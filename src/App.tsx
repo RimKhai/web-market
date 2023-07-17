@@ -1,13 +1,11 @@
 import React from "react"
-import Registration from "./widgets/Registration"
-import Authorization from "./widgets/Authorization"
-import AuthRegPage from "./pages/AuthRegPage"
-
-
+import NavigationBar from "./widgets/NavigationBar"
 
 function App() {
     return (
-        <AuthRegPage/>
+        <>
+            <NavigationBar/>
+        </>
     )
 }
 

@@ -16,7 +16,7 @@ const router = createBrowserRouter([
 
 const AuthRegPage: React.FunctionComponent = () => {
     return (
-        <>
+        <>  
             <RouterProvider router={router} />
         </>
     )
