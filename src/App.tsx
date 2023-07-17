@@ -1,11 +1,12 @@
-import React from 'react';
-import UIInput from './ui_kit/ui_input/UIInput';
+import React from "react"
+import Registration from "./widgets/Registration"
 
 function App() {
-  return (
-    <div className="App">
-    </div>
-  );
+    return (
+        <>
+            <Registration />
+        </>
+    )
 }
 
-export default App;
+export default App
