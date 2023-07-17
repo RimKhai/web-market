@@ -2,6 +2,7 @@ import React from "react"
 import UIInput from "../ui_kit/ui_input/UIInput"
 import UIBlock from "../ui_kit/ui_block/UIBlock"
 import UIButton from "../ui_kit/ui_button/UIButton"
+import { NavLink } from "react-router-dom"
 
 const Authorization: React.FunctionComponent = () => {
     return (
@@ -13,6 +14,7 @@ const Authorization: React.FunctionComponent = () => {
                 <UIInput label='E-mail' />
                 <UIInput label='Пароль' />
                 <UIButton>Войти</UIButton>
+                <NavLink className='flex place-self-end text-blue-500 underline'  to={"/reg"}>Нет Аккаунт? Создать!</NavLink>
             </UIBlock>
         </div>
     )
