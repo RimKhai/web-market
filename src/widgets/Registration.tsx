@@ -18,7 +18,7 @@ const Registration: React.FunctionComponent = () => {
                 <UIInput label='E-mail' />
                 <UIInput label='Пароль' />
                 <UIButton>Зарегистрироваться</UIButton>
-                <NavLink className='flex place-self-end text-blue-500 underline'  to={"/"}>Уже есть аккаунт</NavLink>
+                <NavLink className='flex place-self-end text-blue-500 underline'  to={"/auth"}>Уже есть аккаунт</NavLink>
             </UIBlock>
         </div>
     )
