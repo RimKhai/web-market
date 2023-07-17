@@ -16,3 +16,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+/* Variables */
+:root {
+  --base-color: rgb(255, 54, 54);
+  --text-color: rgb(233, 232, 222);
+  --hover-color: rgb(121, 0, 0);
+}
