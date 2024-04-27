@@ -1,0 +1,72 @@
+@import './styles/variables.scss';
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    background: $background-color;
+    color: $text-color;
+}
+
+a {
+    text-decoration: none;
+    color: $text-color;
+}
+
+.cursor-animation {
+    color: $text-color;
+    transition-duration: 3000ms;
+    &:hover {
+        color: $accent-color;
+    }
+}
+
+.base-input {
+    border-radius: $border-input;
+    box-shadow: 0 0 0 3px $primary-color;
+    padding: 4 * $ui-step;
+    border: 0px;
+    color: $text-color;
+    background-color: $background-color;
+    transition-duration: 1000ms;
+    &:focus {
+        outline: 0;
+        box-shadow: 0 0 0 4px $accent-color;
+    }
+}
+
+.base-textarea {
+    border-radius: $border-input;
+    box-shadow: 0 0 0 3px $primary-color;
+    padding: 4 * $ui-step;
+    border: 0px;
+    color: $text-color;
+    background-color: $background-color;
+    transition-duration: 1000ms;
+    &:focus {
+        outline: 0;
+        box-shadow: 0 0 0 4px $accent-color;
+    }
+    &::-webkit-scrollbar {
+        width: 8px; /* ширина scrollbar */
+    }
+    &::-webkit-scrollbar-track {
+        border-radius: 20px; /* цвет дорожки */
+        background: transparent;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: $primary-color; /* цвет плашки */
+        border-radius: 20px; /* закругления плашки */
+    }
+    &::-webkit-scrollbar-track-piece:end {
+        margin-bottom: 12px;
+    }
+
+    &::-webkit-scrollbar-track-piece:start {
+        background: transparent;
+        margin-top: 12px;
+    }
+}

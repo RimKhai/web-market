@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import './base.scss';
+
+:root {
+    font-family: 'Roboto', Inter, system-ui, Avenir, Helvetica, Arial,
+        sans-serif;
+}
+
+body {
+    &::-webkit-scrollbar {
+        width: 8px; /* ширина scrollbar */
+    }
+    &::-webkit-scrollbar-track {
+        border-radius: 20px; /* цвет дорожки */
+        background: transparent;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: blueviolet; /* цвет плашки */
+        border-radius: 20px; /* закругления плашки */
+    }
+    &::-webkit-scrollbar-track-piece:end {
+        margin-bottom: 12px;
+    }
+
+    &::-webkit-scrollbar-track-piece:start {
+        background: transparent;
+        margin-top: 100px;
+    }
+}
+
+
