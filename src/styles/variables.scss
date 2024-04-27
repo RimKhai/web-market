@@ -1,0 +1,31 @@
+/* Colors */
+$text-color: #eae6f5;
+$text-dark-color: rgb(0, 0, 0);
+$background-color: #03010F;
+$primary-color: #694AF6;
+$primary-surface: rgb(44, 31, 107);
+$secondary-color: #9A0F9F;
+$accent-color: #EA28C5;
+$pallete-warning: #ff7b00;
+$pallete-success: #2fda2f;
+$pallete-error: #ff0000;
+$pallete-info: #0000ff;
+$pallete-grayscale: #7a7a7a;
+$pallete-disabled: #a8a8a8;
+$pallete-outline-disabled: rgb(116, 116, 116);
+
+
+// Typography
+$ui-step: 4px;
+
+$border-small: 10px;
+$border-medium: 15px;
+$border-large: 20px;
+
+$border-input: $border-medium;
+
+
+@mixin setSize($width, $height) {
+    width: $width;
+    height: $height;
+}
