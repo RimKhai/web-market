@@ -1,6 +1,16 @@
 <script setup>
     import icons from '../../icons.js'
-    const props = defineProps(['type', 'fill'])
+    const props = defineProps({
+        type: {
+            type: String,
+            required: true,
+        },
+        fill: {
+            type: String,
+            required: false,
+            default: 'currentColor',
+        },
+    })
 </script>
 
 <template>
