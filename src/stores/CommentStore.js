@@ -198,24 +198,19 @@ export const useCommentStore = defineStore('commentStore', {
     actions: {
         setPerson(product_id, id, person) {
             this.getCommentById(product_id, id)['person'] = person
-            console.log(this.comments)
         },
 
         setAdvantage(product_id, id, advantage) {
             this.getCommentById(product_id, id)['advantage'] = advantage
-            console.log(this.comments)
         },
         setDisadvantage(product_id, id, disadvantage) {
             this.getCommentById(product_id, id)['disadvantage'] = disadvantage
-            console.log(this.comments)
         },
         setComment(product_id, id, comment) {
             this.getCommentById(product_id, id)['comment'] = comment
-            console.log(this.comments)
         },
         setRating(product_id, id, rating) {
             this.getCommentById(product_id, id)['rating'] = rating
-            console.log(this.comments)
         },
 
         addComment(
