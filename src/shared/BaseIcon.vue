@@ -1,6 +1,6 @@
 <script setup>
+    import icons from '../../icons.js'
     const props = defineProps(['type', 'fill'])
-    import icons from '../icons.js'
 </script>
 
 <template>
@@ -11,7 +11,5 @@
         view-box="0 0 20 20"
         xmlns="http://www.w3.org/2000/svg"
         v-html="icons[type]"
-        data-testid="icon"></svg>
+        data-testid="icon" />
 </template>
-
-<style lang="scss" scoped></style>
