@@ -1,24 +1,28 @@
 <script setup>
-const props = defineProps({
+import { computed } from 'vue'
+
+const $props = defineProps({
     tag_name: {
         type: String,
-        default: 'p'
+        default: 'p',
     },
     bold: {
         type: Boolean,
-        default: false
+        default: false,
     },
     size: {
         type: String,
-        default:'m'
-    }
+        default: 'm',
+    },
 })
+
+const classes = computed(() => ['typography', `size_${$props.size}`, $props.bold ? 'bold' : '', `tag_${$props.tag_name}`])
 </script>
 
 <template>
     <component
         :is="tag_name"
-        :class="['typography', `size_${size}`, bold ? 'bold' : '', `tag_${tag_name}`]"
+        :class="classes"
     >
         <slot></slot>
     </component>
