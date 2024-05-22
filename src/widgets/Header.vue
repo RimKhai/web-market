@@ -7,7 +7,7 @@ import { useCartStore } from '../stores/CartStore'
 import PersonMenu from '../features/PersonMenu.vue'
 import Logo from '../shared/Logo.vue'
 import Navigation from '../features/Navigation.vue'
-import Button from '../shared/Button.vue'
+import BaseButton from '../shared/BaseButton.vue'
 
 const personStore = usePersonStore()
 const cartStore = useCartStore()
@@ -45,7 +45,7 @@ const countOfProducts = computed(
                     class="flex items-center"
                     to="/authorization/auth"
                 >
-                    <Button> Войти </Button>
+                    <BaseButton> Войти </BaseButton>
                 </RouterLink>
             </div>
         </div>

@@ -4,7 +4,7 @@ import { useCommentStore } from '../stores/CommentStore'
 import { usePersonStore } from '../stores/PersonStore'
 import { useRoute } from 'vue-router'
 import Rating from '../features/Rating.vue'
-import Button from '../shared/Button.vue'
+import BaseButton from '../shared/BaseButton.vue'
 import Typography from '../shared/Typography.vue'
 import FileUpload from '../features/FileUpload.vue'
 
@@ -89,7 +89,7 @@ const onSubmit = () => {
             >Все поля должны быть заполнены</Typography
         >
         <div class="comment-form__submit-button">
-            <Button @click="onSubmit"> Отправить </Button>
+            <BaseButton @click="onSubmit"> Отправить </BaseButton>
         </div>
     </form>
 </template>

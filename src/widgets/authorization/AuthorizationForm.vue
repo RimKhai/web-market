@@ -4,7 +4,7 @@ import { router } from '../../router'
 
 import { usePersonStore } from '../../stores/PersonStore'
 
-import Button from '../../shared/Button.vue'
+import BaseButton from '../../shared/BaseButton.vue'
 import Typography from '../../shared/Typography.vue'
 
 const $personStore = usePersonStore()
@@ -19,7 +19,7 @@ const login = (email, password) => {
         router.push(
             '/welcome/' +
                 $personStore.person[$personStore.getPersonIndexByEmail(email)]
-                   .id,
+                    .id,
         )
     } else {
         authSuccess.value = false
@@ -44,12 +44,12 @@ const login = (email, password) => {
             placeholder="Пароль"
             type="password"
         />
-        <Button
+        <BaseButton
             class="authorization__button"
             @click="login(email, password)"
         >
             Войти
-        </Button>
+        </BaseButton>
         <Typography
             v-if="!authSuccess"
             class="auth-warn"

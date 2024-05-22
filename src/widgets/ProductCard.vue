@@ -6,7 +6,7 @@ import { useProductStore } from '../stores/ProductStore'
 import { usePersonStore } from '../stores/PersonStore'
 import { useRoute } from 'vue-router'
 
-import Button from '../shared/Button.vue'
+import BaseButton from '../shared/BaseButton.vue'
 import Typography from '../shared/Typography.vue'
 
 const $props = defineProps({
@@ -86,22 +86,22 @@ import(`../assets/${$props.imageName}.png`).then(imageImports => {
             <div class="product-card__actions">
                 <Typography>{{ price }} Руб.</Typography>
                 <div v-if="personId !== -1">
-                    <Button
+                    <BaseButton
                         size="m"
                         color="primary"
                         v-if="!cartStore.isInCart(personId, id)"
                         @click="onClick(id)"
                     >
                         В корзину
-                    </Button>
-                    <Button
+                    </BaseButton>
+                    <BaseButton
                         size="m"
                         color="disabled"
                         v-else
                         @click="cartStore.removeFromCart(personId, id)"
                     >
                         Убрать
-                    </Button>
+                    </BaseButton>
                 </div>
             </div>
         </section>

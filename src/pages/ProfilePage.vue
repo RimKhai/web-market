@@ -5,7 +5,7 @@ import { router } from '../router'
 import { usePersonStore } from '../stores/PersonStore'
 
 import InputEditable from '../features/InputEditable.vue'
-import Button from '../shared/Button.vue'
+import BaseButton from '../shared/BaseButton.vue'
 import Typography from '../shared/Typography.vue'
 
 const personStore = usePersonStore()
@@ -44,12 +44,12 @@ const clickHandler = () => {
     <div class="profile-page">
         <div>
             <div class="h-48 w-32 bg-black rounded-2xl"></div>
-            <Button
+            <BaseButton
                 @click="clickHandler"
                 class="profile-page__logout-button"
             >
                 Выйти
-            </Button>
+            </BaseButton>
         </div>
         <section>
             <Typography tagName="h3">Информация профиля</Typography>

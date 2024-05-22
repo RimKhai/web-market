@@ -13,7 +13,7 @@ import Parameters from '../widgets/Parameters.vue'
 import Comment from '../widgets/Comment.vue'
 import CommentForm from '../widgets/CommentForm.vue'
 import Typography from '../shared/Typography.vue'
-import Button from '../shared/Button.vue'
+import BaseButton from '../shared/BaseButton.vue'
 import Rating from '../features/Rating.vue'
 
 const productStore = useProductStore()
@@ -80,18 +80,18 @@ import(
                 />
                 <Typography tagName="h4">{{ product?.price }} руб</Typography>
                 <div v-if="personId !== -1">
-                    <Button
+                    <BaseButton
                         size="l"
                         v-if="!cartStore.isInCart(personId, productId)"
                         @click="onAddToCart(productId)"
-                        >В корзину</Button
+                        >В корзину</BaseButton
                     >
-                    <Button
+                    <BaseButton
                         v-else
                         size="l"
                         color="disabled"
                         @click="cartStore.removeFromCart(personId, productId)"
-                        >Убрать</Button
+                        >Убрать</BaseButton
                     >
                 </div>
             </aside>

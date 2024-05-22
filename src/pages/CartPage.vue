@@ -9,7 +9,7 @@ import { useRoute } from 'vue-router'
 
 import CartProductCard from '../widgets/CartProductCard.vue'
 import Typography from '../shared/Typography.vue'
-import Button from '../shared/Button.vue'
+import BaseButton from '../shared/BaseButton.vue'
 import BaseCheckbox from '../features/BaseCheckbox.vue'
 
 const cartStore = useCartStore()
@@ -82,7 +82,7 @@ watchEffect(() => {
             {{ `Количество товаров: ${cartStore.getTotalQuantity(personId)}` }}
         </p>
         <RouterLink to="/order-reg">
-            <Button
+            <BaseButton
                 class="cart-button"
                 :disabled="cartStore.getTotalQuantity(personId) ? false : true"
             >
@@ -91,7 +91,7 @@ watchEffect(() => {
                         ? 'Оформить заказ'
                         : 'Добавьте товары'
                 }}
-            </Button></RouterLink
+            </BaseButton></RouterLink
         >
     </footer>
 </template>

@@ -1,6 +1,6 @@
 <script setup>
 import { computed } from 'vue'
-import Button from '../shared/Button.vue'
+import BaseButton from '../shared/BaseButton.vue'
 
 const $emits = defineEmits(['changePage'])
 
@@ -34,28 +34,28 @@ const pages = computed(() =>
             v-show="itemsCount > itemsPerPage"
             class="flex space-x-1"
         >
-            <Button
+            <BaseButton
                 v-if="currentPage != 1 && currentPage > 2"
                 @click="$emit('changePage', 1)"
             >
                 1
-            </Button>
-            <Button
+            </BaseButton>
+            <BaseButton
                 v-if="currentPage > 1"
                 @click="$emit('changePage', currentPage - 1)"
             >
                 {{ currentPage - 1 }}
-            </Button>
-            <Button class="is_active_true">
+            </BaseButton>
+            <BaseButton class="is_active_true">
                 {{ currentPage }}
-            </Button>
-            <Button
+            </BaseButton>
+            <BaseButton
                 v-if="currentPage + 1 <= pages.length"
                 @click="$emit('changePage', currentPage + 1)"
             >
                 {{ currentPage + 1 }}
-            </Button>
-            <Button
+            </BaseButton>
+            <BaseButton
                 v-if="
                     currentPage != pages.length &&
                     pages.length != currentPage + 1
@@ -63,7 +63,7 @@ const pages = computed(() =>
                 @click="$emit('changePage', pages.length)"
             >
                 {{ pages.length }}
-            </Button>
+            </BaseButton>
         </div>
     </div>
 </template>

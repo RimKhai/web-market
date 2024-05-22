@@ -4,7 +4,7 @@ import { router } from '../../router'
 
 import { usePersonStore } from '../../stores/PersonStore'
 
-import Button from '../../shared/Button.vue'
+import BaseButton from '../../shared/BaseButton.vue'
 import Typography from '../../shared/Typography.vue'
 
 const $personStore = usePersonStore()
@@ -64,7 +64,7 @@ const register = () => {
             type="password"
         />
 
-        <Button @click="register"> Зарегистрироваться </Button>
+        <BaseButton @click="register"> Зарегистрироваться </BaseButton>
 
         <Typography
             v-if="!regSuccessful"
