@@ -8,43 +8,41 @@ import Button from '../shared/Button.vue'
 import Typography from '../shared/Typography.vue'
 import FileUpload from '../features/FileUpload.vue'
 
-const $props = defineProps(['product_id'])
-const $emits = defineEmits(['onSubmit'])
-const $route = useRoute()
+const props = defineProps(['productId'])
+const emits = defineEmits(['onSubmit'])
+const route = useRoute()
 
-const $comment_store = useCommentStore()
-const $person_store = usePersonStore()
+const commentStore = useCommentStore()
+const personStore = usePersonStore()
 
 const TOTAL_RATING = 5
 
-const _comment_person = onMounted(() => {
-    return $comment_store.getCommentByPersonId($props.product_id, 1)
+const commentPerson = onMounted(() => {
+    return commentStore.getCommentByPersonId(props.productId, 1)
 })
 
-const _logined_person = computed(() => $person_store.getCurrentPerson)
-const _comment_success = ref(true)
+const loginedPerson = computed(() => personStore.getCurrentPerson)
+const commentSuccess = ref(true)
 
-const _rating = ref(_comment_person()?.rating ?? 0)
-const _advantage = ref(_comment_person()?.advantage ?? '')
-const _disadvantage = ref(_comment_person()?.disadvantage ?? '')
-const _comment = ref(_comment_person()?.comment ?? '')
-const _images = ref(_comment_person()?.images ?? [])
+const rating = ref(commentPerson()?.rating ?? 0)
+const advantage = ref(commentPerson()?.advantage ?? '')
+const disadvantage = ref(commentPerson()?.disadvantage ?? '')
+const comment = ref(commentPerson()?.comment ?? '')
+const images = ref(commentPerson()?.images ?? [])
 
 const onSubmit = () => {
-    _comment_success.value = $comment_store.addComment(
-        $props.product_id,
-        _logined_person.value,
-        _advantage.value,
-        _disadvantage.value,
-        _comment.value,
-        _rating.value,
-        _images.value,
+    commentSuccess.value = commentStore.addComment(
+        props.productId,
+        loginedPerson.value,
+        advantage.value,
+        disadvantage.value,
+        comment.value,
+        rating.value,
+        images.value,
     )
 
-    $emits('onSubmit', 'submit')
+    emits('onSubmit', 'ubmit')
 }
-
-watchEffect(() => console.log(_images.value))
 </script>
 
 <template>
@@ -54,39 +52,39 @@ watchEffect(() => console.log(_images.value))
     >
         <div class="comment-form__head">
             <div class="w-12 h-12 bg-black rounded-full"></div>
-            <Typography>{{ _logined_person?.name }}</Typography>
+            <Typography>{{ loginedPerson?.name }}</Typography>
             <Rating
-                :value="_rating"
-                :total_rating="TOTAL_RATING"
-                @updateRating="_rating = $event"
+                :value="rating"
+                :totalRating="TOTAL_RATING"
+                @updateRating="rating = $event"
             />
         </div>
         <main class="comment-form__fields">
             <textarea
                 class="base-textarea resize-none"
                 :rows="3"
-                v-model="_advantage"
+                v-model="advantage"
                 :placeholder="'Достоинства'"
             ></textarea>
             <textarea
                 class="base-textarea resize-none"
                 :rows="3"
-                v-model="_disadvantage"
+                v-model="disadvantage"
                 :placeholder="'Недостатки'"
             ></textarea>
             <textarea
                 class="base-textarea resize-none"
                 :rows="3"
-                v-model="_comment"
+                v-model="comment"
                 :placeholder="'Комментарий'"
             ></textarea>
             <FileUpload
-                :images="_images"
-                @getImages="value => (_images = value)"
+                :images="images"
+                @getImages="images = $event"
             />
         </main>
         <Typography
-            v-if="!_comment_success"
+            v-if="!commentSuccess"
             class="comment-form-warn"
             >Все поля должны быть заполнены</Typography
         >

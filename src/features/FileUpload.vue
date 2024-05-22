@@ -4,33 +4,30 @@ import { ref, watchEffect } from 'vue'
 import BaseIcon from '../shared/BaseIcon.vue'
 import ImageCard from '../widgets/ImageCard.vue'
 
-const $props = defineProps(['images'])
+const props = defineProps(['images'])
 
-const m_image = ref($props?.images ?? [])
-const m_file = ref()
+const mImage = ref(props?.images ?? [])
+const mFile = ref()
 
-const $emits = defineEmits(['getImages'])
+const emits = defineEmits(['getImages'])
 
 const onChange = event => {
-    m_file.value = event.target.files || event.dataTransfer.files
+    mFile.value = event.target.files || event.dataTransfer.files
 
-    if (!m_file.value.length) return
+    if (!mFile.value.length) return
 
-    Object.keys(m_file.value).map(item => {
-        m_image.value = [
-            ...m_image.value,
-            URL.createObjectURL(m_file.value[item]),
-        ]
+    Object.keys(mFile.value).map(item => {
+        mImage.value = [...mImage.value, URL.createObjectURL(mFile.value[item])]
     })
 }
 
 const removeImage = image => {
-    m_image.value = m_image.value.filter(item => item !== image)
+    mImage.value = mImage.value.filter(item => item !== image)
     console.log(image)
 }
 
 watchEffect(() => {
-    $emits('getImages', m_image.value)
+    emits('getImages', mImage.value)
 })
 </script>
 
@@ -38,7 +35,7 @@ watchEffect(() => {
     <div class="file-upload">
         <div class="file-upload__image-container">
             <ImageCard
-                v-for="image in m_image"
+                v-for="image in mImage"
                 :key="image"
                 :image="image"
                 @onRemove="removeImage(image)"
@@ -66,10 +63,12 @@ watchEffect(() => {
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
+    cursor: pointer;
 }
 .file-upload__image-container {
     display: flex;
     width: 100%;
+    max-width: 500px;
     overflow-y: auto;
 }
 .file-upload .file-upload__area {
@@ -88,10 +87,10 @@ watchEffect(() => {
 }
 .file-upload__input {
     position: absolute;
-    width: 100%;
-    height: 100%;
     opacity: 0;
     cursor: pointer;
+    width: 100%;
+    height: 100%;
     background-color: green;
 }
 

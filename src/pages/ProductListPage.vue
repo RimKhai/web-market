@@ -13,43 +13,45 @@ import Typography from '../shared/Typography.vue'
 import LineNavigation from '../features/LineNavigation.vue'
 import Pagination from '../features/Pagination.vue'
 
-const $product_store = useProductStore()
-const $category_store = useCategoryStore()
-const $route = useRoute()
+const productStore = useProductStore()
+const categoryStore = useCategoryStore()
+const route = useRoute()
 
-const _current_page = ref(1)
+const currentPage = ref(1)
 const ITEMS_PER_PAGE = 3
 
-const _count_of_items = computed(() =>
-    $route.params.category.at(-1) == 'all'
-        ? $product_store.products.length
-        : $category_store.getAllByPath($route.params.category.at(-1))[0].products.length,
+const countOfItems = computed(() =>
+    route.params.category.at(-1) == 'all'
+        ? productStore.products.length
+        : categoryStore.getAllByPath(route.params.category.at(-1))[0].products
+              .length,
 )
 
-const _displayed_items = computed(() => {
-    const startIndex = (_current_page.value - 1) * ITEMS_PER_PAGE
+const displayedItems = computed(() => {
+    const startIndex = (currentPage.value - 1) * ITEMS_PER_PAGE
     const endIndex = startIndex + ITEMS_PER_PAGE
 
-    if ($route.params.category.at(-1) == 'all') {
-        return $product_store.products.slice(startIndex, endIndex)
+    if (route.params.category.at(-1) == 'all') {
+        return productStore.products.slice(startIndex, endIndex)
     }
 
-    return $category_store
-        .getAllByPath($route.params.category.at(-1))[0]
+    return categoryStore
+        .getAllByPath(route.params.category.at(-1))[0]
         .products.reduce((accum, item) => {
-            return [...accum, $product_store.getProductById(item)]
+            return [...accum, productStore.getProductById(item)]
         }, [])
         .slice(startIndex, endIndex)
 })
 
-const changePage = page_number => {
-    _current_page.value = page_number
+const changePage = pageNumber => {
+    currentPage.value = pageNumber
 }
 
-const cardVisibility = product_id => {
+const cardVisibility = productId => {
     return (
-        $category_store.getCategoryByPath($route.params.category.at(-1))?.products?.includes(product_id) ||
-        $route.params.category == 'all'
+        categoryStore
+            .getCategoryByPath(route.params.category.at(-1))
+            ?.products?.includes(productId) || route.params.category == 'all'
     )
 }
 
@@ -83,7 +85,7 @@ const SORT_OPTIONS = [
             <Dropdown class="category-menu__list">
                 <template #button>
                     <Typography
-                        tag_name="p"
+                        tagName="p"
                         class="category-menu__button"
                         >Категория</Typography
                     >
@@ -93,7 +95,9 @@ const SORT_OPTIONS = [
                         <NestedListItem
                             :item="item"
                             :index="index"
-                            v-for="(item, index) in $category_store.categoriesTree"
+                            v-for="(
+                                item, index
+                            ) in categoryStore.categoriesTree"
                             :key="item.id"
                         />
                     </div>
@@ -104,19 +108,19 @@ const SORT_OPTIONS = [
             <LineNavigation />
             <div class="product-list__actions">
                 <BaseSelect
-                    @onClick="data => $product_store.sortBy(data.value)"
+                    @onClick="data => productStore.sortBy(data.value)"
                     :data="SORT_OPTIONS"
                 />
             </div>
             <Pagination
                 class="space-y-2"
-                :items_count="_count_of_items"
-                :items_per_page="ITEMS_PER_PAGE"
-                :current_page="_current_page"
+                :itemsCount="countOfItems"
+                :itemsPerPage="ITEMS_PER_PAGE"
+                :currentPage="currentPage"
                 @changePage="changePage"
             >
                 <div
-                    v-for="product in _displayed_items"
+                    v-for="product in displayedItems"
                     :key="product.id"
                 >
                     <ProductCard
@@ -126,7 +130,7 @@ const SORT_OPTIONS = [
                         :description="product.description"
                         :quantity="product.quantity"
                         :price="product.price"
-                        :image_name="product.image_name"
+                        :imageName="product.imageName"
                     />
                 </div>
             </Pagination>

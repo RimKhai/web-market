@@ -7,27 +7,27 @@ import { usePersonStore } from '../../stores/PersonStore'
 import Button from '../../shared/Button.vue'
 import Typography from '../../shared/Typography.vue'
 
-const $person_store = usePersonStore()
+const $personStore = usePersonStore()
 
-const _name = ref('')
-const _second_name = ref('')
-const _email = ref('')
-const _password = ref('')
-const _id = ref(0)
-const _reg_successful = ref(true)
+const name = ref('')
+const secondName = ref('')
+const email = ref('')
+const password = ref('')
+const id = ref(0)
+const regSuccessful = ref(true)
 
 const register = () => {
-    _id.value = Date.now()
-    _reg_successful.value = $person_store.addNewPerson(
-        _id.value,
-        _name.value,
-        _second_name.value,
-        _email.value,
-        _password.value,
+    id.value = Date.now()
+    regSuccessful.value = $personStore.addNewPerson(
+        id.value,
+        name.value,
+        secondName.value,
+        email.value,
+        password.value,
     )
 
-    if (_reg_successful.value === true) {
-        router.push(`/welcome/${_id.value}`)
+    if (regSuccessful.value === true) {
+        router.push(`/welcome/${id.value}`)
     }
 }
 </script>
@@ -41,25 +41,25 @@ const register = () => {
         <div class="registration__fullname">
             <input
                 class="base-input"
-                v-model="_name"
+                v-model="name"
                 placeholder="Имя"
                 type="text"
             />
             <input
                 class="base-input"
-                v-model="_second_name"
+                v-model="secondName"
                 placeholder="Фамилия"
             />
         </div>
         <input
             class="base-input"
-            v-model="_email"
+            v-model="email"
             placeholder="E-mail"
             type="email"
         />
         <input
             class="base-input"
-            v-model="_password"
+            v-model="password"
             placeholder="Пароль"
             type="password"
         />
@@ -67,7 +67,7 @@ const register = () => {
         <Button @click="register"> Зарегистрироваться </Button>
 
         <Typography
-            v-if="!_reg_successful"
+            v-if="!regSuccessful"
             class="registration-warn"
             >Все поля должны быть заполнены</Typography
         >

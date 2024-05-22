@@ -7,7 +7,7 @@ import BaseIcon from '../shared/BaseIcon.vue'
 import Typography from '../shared/Typography.vue'
 import ImageCard from './ImageCard.vue'
 
-const $props = defineProps({
+const props = defineProps({
     data: {
         id: {
             type: Number,
@@ -45,22 +45,20 @@ const $props = defineProps({
     },
 })
 
-const $emits = defineEmits(['onDelete', 'onEdit'])
+const emits = defineEmits(['onDelete', 'onEdit'])
 
-const $person_store = usePersonStore()
-const $comment_store = useCommentStore()
+const personStore = usePersonStore()
+const commentStore = useCommentStore()
 
-const _logined_person = computed(() => $person_store.getCurrentPerson)
-const _rating = ref($props.data?.rating)
-const TOTAL_RATING = 5
+const loginedPerson = computed(() => personStore.getCurrentPerson)
+const rating = ref(props.data?.rating)
+const totalRating = 5
 
 const onDelete = () => {
-    console.log('delete')
-    $emits('onDelete', $props.data?.id)
+    emits('onDelete', props.data?.id)
 }
 const onEdit = () => {
-    console.log('edit')
-    $emits('onEdit', $props.data?.id)
+    emits('onEdit', props.data?.id)
 }
 </script>
 
@@ -70,37 +68,37 @@ const onEdit = () => {
             <div class="comment__head">
                 <div class="w-12 h-12 bg-black rounded-full"></div>
                 <div>
-                    <Typography>{{ data?.person?.name }}</Typography>
+                    <Typography>{{ props.data?.person?.name }}</Typography>
                     <div class="text-gray-400">
                         {{
                             `${new Date(
-                                data?.date,
+                                props.data?.date,
                             ).toLocaleDateString()} ${new Date(
-                                data?.date,
+                                props.data?.date,
                             ).toLocaleTimeString('ru')}`
                         }}
                     </div>
                 </div>
-                <Typography>{{ _rating?.toFixed(1) }}</Typography>
+                <Typography>{{ rating?.toFixed(1) }}</Typography>
                 <Raiting
-                    :value="_rating"
-                    :total_rating="TOTAL_RATING"
+                    :value="rating"
+                    :total_rating="totalRating"
                 />
             </div>
             <div class="comment__images">
                 <ImageCard
-                    v-for="image in data.images"
+                    v-for="image in props.data.images"
                     :key="image"
                     :image="image"
                     :readonly="true"
                 />
             </div>
-            <Typography>Достоинства: {{ data?.advantage }}</Typography>
-            <Typography>Недостатки: {{ data?.disadvantage }}</Typography>
-            <Typography>Комментарий: {{ data?.comment }}</Typography>
+            <Typography>Достоинства: {{ props.data?.advantage }}</Typography>
+            <Typography>Недостатки: {{ props.data?.disadvantage }}</Typography>
+            <Typography>Комментарий: {{ props.data?.comment }}</Typography>
         </div>
         <div
-            v-if="data?.person?.id == _logined_person.id"
+            v-if="props.data?.person?.id == loginedPerson.id"
             class="flex gap-2"
         >
             <BaseIcon
@@ -110,7 +108,7 @@ const onEdit = () => {
             />
             <BaseIcon
                 @click="
-                    $comment_store.removeComment($route.params.id, data?.id)
+                    commentStore.removeComment($route.params.id, props.data?.id)
                 "
                 type="x-mark"
             />

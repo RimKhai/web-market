@@ -5,25 +5,25 @@ import Button from '../shared/Button.vue'
 const $emits = defineEmits(['changePage'])
 
 const $props = defineProps({
-    items_count: {
+    itemsCount: {
         type: Number,
         required: true,
     },
-    items_per_page: {
+    itemsPerPage: {
         type: Number,
         required: true,
     },
-    current_page: {
+    currentPage: {
         type: Number,
         required: true,
     },
 })
 
-const _page_count = computed(() =>
-    Math.ceil($props.items_count / $props.items_per_page),
+const pageCount = computed(() =>
+    Math.ceil($props.itemsCount / $props.itemsPerPage),
 )
-const _pages = computed(() =>
-    Array.from({ length: _page_count.value }, (_, i) => i + 1),
+const pages = computed(() =>
+    Array.from({ length: pageCount.value }, (_, i) => i + 1),
 )
 </script>
 
@@ -31,38 +31,38 @@ const _pages = computed(() =>
     <div>
         <slot></slot>
         <div
-            v-show="items_count > items_per_page"
+            v-show="itemsCount > itemsPerPage"
             class="flex space-x-1"
         >
             <Button
-                v-if="current_page != 1 && current_page > 2"
+                v-if="currentPage != 1 && currentPage > 2"
                 @click="$emit('changePage', 1)"
             >
                 1
             </Button>
             <Button
-                v-if="current_page > 1"
-                @click="$emit('changePage', current_page - 1)"
+                v-if="currentPage > 1"
+                @click="$emit('changePage', currentPage - 1)"
             >
-                {{ current_page - 1 }}
+                {{ currentPage - 1 }}
             </Button>
             <Button class="is_active_true">
-                {{ current_page }}
+                {{ currentPage }}
             </Button>
             <Button
-                v-if="current_page + 1 <= _pages.length"
-                @click="$emit('changePage', current_page + 1)"
+                v-if="currentPage + 1 <= pages.length"
+                @click="$emit('changePage', currentPage + 1)"
             >
-                {{ current_page + 1 }}
+                {{ currentPage + 1 }}
             </Button>
             <Button
                 v-if="
-                    current_page != _pages.length &&
-                    _pages.length != current_page + 1
+                    currentPage != pages.length &&
+                    pages.length != currentPage + 1
                 "
-                @click="$emit('changePage', _pages.length)"
+                @click="$emit('changePage', pages.length)"
             >
-                {{ _pages.length }}
+                {{ pages.length }}
             </Button>
         </div>
     </div>

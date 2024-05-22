@@ -5,7 +5,7 @@ export const useCartStore = defineStore('cartStore', {
     state: () => ({
         cart: [
             {
-                person_id: 1,
+                personId: 1,
                 content: [
                     {
                         id: 1,
@@ -26,19 +26,19 @@ export const useCartStore = defineStore('cartStore', {
         //В случае отсутствия совпадений каждая из функций возращает -1, аналогично встроенному методу indexOf()
 
         getCartItemByPersonId: state => {
-            return person_id =>
-                state.cart.find(item => item.person_id == person_id) ?? -1
+            return personId =>
+                state.cart.find(item => item.personId == personId) ?? -1
         },
         getCartItemById() {
-            return (person_id, id) =>
-                this.getCartItemByPersonId(person_id).content?.find(
+            return (personId, id) =>
+                this.getCartItemByPersonId(personId).content?.find(
                     item => item.id == id,
                 ) ?? -1
         },
 
         getTotalCost() {
-            return person_id =>
-                this.getCartItemByPersonId(person_id).content.reduce(
+            return personId =>
+                this.getCartItemByPersonId(personId).content.reduce(
                     (accum, item) => {
                         if (item.checked) {
                             return (
@@ -54,8 +54,8 @@ export const useCartStore = defineStore('cartStore', {
                 )
         },
         getTotalQuantity() {
-            return person_id =>
-                this.getCartItemByPersonId(person_id).content.reduce(
+            return personId =>
+                this.getCartItemByPersonId(personId).content.reduce(
                     (accum, item) => {
                         if (item.checked) {
                             return accum + item.quantity
@@ -66,63 +66,63 @@ export const useCartStore = defineStore('cartStore', {
                 )
         },
         getCartByPersonId() {
-            return person_id =>
-                this.cart.find(item => item.person_id == person_id) ?? -1
+            return personId =>
+                this.cart.find(item => item.personId == personId) ?? -1
         },
     },
 
     actions: {
-        addToCart(person_id, id) {
-            this.getCartByPersonId(person_id).content.push({
+        addToCart(personId, id) {
+            this.getCartByPersonId(personId).content.push({
                 id: id,
                 quantity: 1,
                 checked: true,
             })
         },
 
-        toggleCheck(person_id, id) {
-            this.getCartItemById(person_id, id).checked = !this.getCartItemById(
-                person_id,
+        toggleCheck(personId, id) {
+            this.getCartItemById(personId, id).checked = !this.getCartItemById(
+                personId,
                 id,
             ).checked
         },
 
-        toggleAll(person_id, value) {
-            this.getCartItemByPersonId(person_id).content.forEach(
+        toggleAll(personId, value) {
+            this.getCartItemByPersonId(personId).content.forEach(
                 item => (item.checked = value),
             )
         },
 
-        increaseQuantity(person_id, id) {
-            this.getCartItemById(person_id, id)['quantity'] += 1
+        increaseQuantity(personId, id) {
+            this.getCartItemById(personId, id)['quantity'] += 1
         },
 
-        decreaseQuantity(person_id, id) {
-            this.getCartItemById(person_id, id)['quantity'] -= 1
+        decreaseQuantity(personId, id) {
+            this.getCartItemById(personId, id)['quantity'] -= 1
         },
 
-        changeQuantity(person_id, id, quantity) {
-            this.getCartItemById(person_id, id)['quantity'] = quantity
+        changeQuantity(personId, id, quantity) {
+            this.getCartItemById(personId, id)['quantity'] = quantity
         },
 
-        isInCart(person_id, id) {
-            this.getCartItemById(person_id, id) !== -1 ? true : false
+        isInCart(personId, id) {
+            this.getCartItemById(personId, id) !== -1 ? true : false
         },
 
-        isChecked(person_id, id) {
-            return this.getCartItemById(person_id, id).checked
+        isChecked(personId, id) {
+            return this.getCartItemById(personId, id).checked
         },
 
-        isAllChecked(person_id) {
-            return this.getCartItemByPersonId(person_id).content.reduce(
+        isAllChecked(personId) {
+            return this.getCartItemByPersonId(personId).content.reduce(
                 (accum, item) => accum * item.checked,
                 true,
             )
         },
 
-        removeFromCart(person_id, id) {
-            this.getCartItemByPersonId(person_id).content =
-                this.getCartItemByPersonId(person_id).content.filter(
+        removeFromCart(personId, id) {
+            this.getCartItemByPersonId(personId).content =
+                this.getCartItemByPersonId(personId).content.filter(
                     item => item.id != id,
                 )
         },

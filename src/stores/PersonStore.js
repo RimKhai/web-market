@@ -7,111 +7,117 @@ export const usePersonStore = defineStore('personStore', {
             {
                 id: 1,
                 name: 'Борис',
-                second_name: 'Шест',
+                secondName: 'Шест',
                 email: 'boris69@gmail.com',
                 password: 12345678,
                 logined: true,
             },
         ],
 
-        //index текущего авторизованного польщователя
-        logined_person_index: 0,
-        //id текущего авторизованного польщователя
-        logined_person_id: 1,
+        // Индекс текущего авторизованного пользователя
+        loginedPersonIndex: 0,
+        // ID текущего авторизованного пользователя
+        loginedPersonId: 1,
     }),
 
     getters: {
-        getPersonById: state => {
-            return person_id =>
-                state.person.find(item => item.id == person_id) ?? -1
-        },
+        // Получение пользователя по ID
+        getPersonById: state => personId =>
+            state.person.find(item => item.id === personId)?? -1,
 
-        getPersonIndexByEmail: state => {
-            return email =>
-                state.person.findIndex(item => item.email == email) ?? -1
-        },
+        // Получение индекса пользователя по email
+        getPersonIndexByEmail: state => email =>
+            state.person.findIndex(item => item.email === email)?? -1,
 
+        // Получение текущего авторизованного пользователя
         getCurrentPerson: state => {
-            if (state.logined_person_index == -1) {
+            if (state.loginedPersonIndex === -1) {
                 return -1
             }
-            return state.person[state.logined_person_index]
+            return state.person[state.loginedPersonIndex]
         },
     },
 
     actions: {
-        addNewPerson(id, name, second_name, email, password) {
-            // проверка на пустоту полей при регистрации
+        // Добавление нового пользователя
+        addNewPerson(id, name, secondName, email, password) {
+            // Проверка на пустоту полей при регистрации
             if (
                 name.trim() === '' &&
-                second_name.trim() === '' &&
+                secondName.trim() === '' &&
                 email.trim() === '' &&
                 password.trim() === ''
             ) {
                 return false
             }
-            //Добавление пользователя в базу (В данном случае на клиенте)
+
+            // Добавление пользователя в базу (в данном случае, на клиенте)
             this.person = [
-                ...this.person,
+              ...this.person,
                 {
                     id: id,
                     name: name,
-                    second_name: second_name,
+                    secondName: secondName,
                     email: email,
                     password: password,
                     logined: true,
                 },
             ]
 
-            //Обновление индекса и id текущего авторизованного пользователя
-            this.logined_person_index = this.person.length - 1
-            this.logined_person_id = id
+            // Обновление индекса и ID текущего авторизованного пользователя
+            this.loginedPersonIndex = this.person.length - 1
+            this.loginedPersonId = id
 
-            //Создание корзины нового пользователя
+            // Создание новой корзины для нового пользователя
             useCartStore().cart = [
-                ...useCartStore().cart,
+              ...useCartStore().cart,
                 {
-                    person_id: id,
+                    personId: id,
                     content: [],
                 },
             ]
 
-            //Возвращает true в случае успешной регистрации пользователя
+            // Возвращает true в случае успешной регистрации пользователя
             return true
         },
 
-        //сеттеры
+        // Сеттеры
+        // Изменение имени пользователя по ID
         changeName(id, name) {
             this.getPersonById(id).name = name
         },
 
-        changeSecondName(id, second_name) {
-            this.getPersonById(id).second_name = second_name
+        // Изменение фамилии пользователя по ID
+        changeSecondName(id, secondName) {
+            this.getPersonById(id).secondName = secondName
         },
 
+        // Изменение email пользователя по ID
         changeEmail(id, email) {
             this.getPersonById(id).email = email
         },
 
+        // Изменение пароля пользователя по ID
         changePassword(id, password) {
             this.getPersonById(id).password = password
         },
 
+        // Установка индекса текущего авторизованного пользователя
         setLoginedPerson(index) {
-            this.logined_person_index = index
+            this.loginedPersonIndex = index
         },
 
-        //выход из профиля, уставновка индекса и id текущего пользователя на -1, что значит отсутствие авотризованного пользователя
+        // Выход из профиля, установка индекса и ID текущего пользователя на -1, что означает отсутствие авторизованного пользователя
         quit() {
-            ;(this.person[this.logined_person_index].logined = false),
-                (this.logined_person_index = -1),
-                (this.logined_person_id = -1)
+            ;(this.person[this.loginedPersonIndex].logined = false),
+                (this.loginedPersonIndex = -1),
+                (this.loginedPersonId = -1)
         },
 
-        //проверка пароля при авторизации пользователя
+        // Проверка пароля при авторизации пользователя
         checkPassword(email, password) {
             if (
-                this.person[this.getPersonIndexByEmail(email)]?.password ==
+                this.person[this.getPersonIndexByEmail(email)]?.password ===
                 password
             ) {
                 return true
@@ -119,12 +125,12 @@ export const usePersonStore = defineStore('personStore', {
             return false
         },
 
-        //функция авторизации уже существующего пользователя
+        // Функция авторизации уже существующего пользователя
         login(email, password) {
             if (this.checkPassword(email, password)) {
-                this.logined_person_index = this.getPersonIndexByEmail(email)
-                this.logined_person_id =
-                    this.person[this.logined_person_index].id
+                this.loginedPersonIndex = this.getPersonIndexByEmail(email)
+                this.loginedPersonId =
+                    this.person[this.loginedPersonIndex].id
                 this.getCurrentPerson.logined = true
 
                 return true

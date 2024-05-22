@@ -17,7 +17,7 @@ onMounted(() => {
     <main class="authorization">
         <RouterLink to="/"
             ><Typography
-                tag_name="h2"
+                tagName="h2"
                 class="logo"
                 >Web Market</Typography
             ></RouterLink

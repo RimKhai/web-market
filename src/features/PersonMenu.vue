@@ -20,7 +20,7 @@ const props = defineProps({
         to="/profile"
     >
         <BaseIcon type="profile" />
-        <Typography tag_name="p">
+        <Typography tagName="p">
             {{ `${name} ${secondName}` }}
         </Typography>
     </RouterLink>

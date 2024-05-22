@@ -16,141 +16,111 @@ import Typography from '../shared/Typography.vue'
 import Button from '../shared/Button.vue'
 import Rating from '../features/Rating.vue'
 
-const $product_store = useProductStore()
-const $cart_store = useCartStore()
-const $person_store = usePersonStore()
-const $comment_store = useCommentStore()
-const $route = useRoute()
-const $img_src = ref()
+const productStore = useProductStore()
+const cartStore = useCartStore()
+const personStore = usePersonStore()
+const commentStore = useCommentStore()
+const route = useRoute()
+const imgSrc = ref()
 
-const _person_id = computed(() => $person_store.logined_person_id)
-const _product_id = computed(() => $route.params.id)
-const _product = computed(() =>
-    $product_store.getProductById(_product_id.value),
+const personId = computed(() => personStore.loginedPersonId)
+const productId = computed(() => route.params.id)
+const product = computed(() => productStore.getProductById(productId.value))
+const isEditing = ref(false)
+const commentData = computed(() =>
+    commentStore.getCommentByPersonId(productId.value, personId.value),
 )
-const _is_editing = ref(false)
-const _comment_data = computed(() =>
-    $comment_store.getCommentByPersonId(_product_id.value, _person_id.value),
+const productComment = computed(() =>
+    commentStore.getCommentByProductId(productId.value),
 )
-const _product_comment = computed(() =>
-    $comment_store.getCommentByProductId(_product_id.value),
-)
-const _comment_form_visibility = computed(
+const commentFormVisibility = computed(
     () =>
-        (!_product_comment.value.person_ids?.has(_person_id.value) ||
-            _is_editing.value) &&
-        _person_id.value !== -1,
+        (!productComment.value.personIds?.has(personId.value) ||
+            isEditing.value) &&
+        personId.value !== -1,
 )
-
-const _comment_visibility = computed(
+const commentVisibility = computed(
     () =>
-        (!_product_comment.value.person_ids?.has(_person_id.value) ||
-            !_is_editing.value) &&
-        _person_id.value !== -1,
+        (!productComment.value.personIds?.has(personId.value) ||
+            !isEditing.value) &&
+        personId.value !== -1,
 )
 
-const onAddToCart = product_id => {
-    if (!$cart_store.isInCart(_person_id.value, product_id)) {
-        $cart_store.addToCart(_person_id.value, product_id)
+const onAddToCart = productId => {
+    if (!cartStore.isInCart(personId.value, productId)) {
+        cartStore.addToCart(personId.value, productId)
     }
 }
 
 import(
-    `../assets/${
-        $product_store.getProductById(_product_id.value).image_name
-    }.png`
-).then(image_imports => {
-    $img_src.value = image_imports.default
+    `../assets/${productStore.getProductById(productId.value).imageName}.png`
+).then(imageImports => {
+    imgSrc.value = imageImports.default
 })
 </script>
 
 <template>
     <main class="product">
-        <Typography tag_name="h3">
-            {{ _product?.name }}
-        </Typography>
+        <Typography tagName="h3">{{ product?.name }}</Typography>
         <div class="flex space-x-4">
-            <Typography tag_name="h4"
-                >Рейтинг: {{ _product?.total_rating?.toFixed(1) }}</Typography
+            <Typography tagName="h4"
+                >Рейтинг: {{ product?.totalRating?.toFixed(1) }}</Typography
             >
             <Rating
-                :total_rating="5"
-                :value="_product?.total_rating"
+                :totalRating="5"
+                :value="product?.totalRating"
             />
         </div>
         <div class="product__container">
             <aside class="flex flex-col space-y-3 items-center">
                 <img
                     class="product__image"
-                    :src="$img_src"
+                    :src="imgSrc"
                     alt="failed"
                 />
-                <Typography tag_name="h4">{{ _product?.price }} руб</Typography>
-                <div v-if="_person_id !== -1">
+                <Typography tagName="h4">{{ product?.price }} руб</Typography>
+                <div v-if="personId !== -1">
                     <Button
                         size="l"
-                        v-if="!$cart_store.isInCart(_person_id, _product_id)"
-                        @click="onAddToCart(_product_id)"
+                        v-if="!cartStore.isInCart(personId, productId)"
+                        @click="onAddToCart(productId)"
+                        >В корзину</Button
                     >
-                        В корзину
-                    </Button>
                     <Button
                         v-else
                         size="l"
                         color="disabled"
-                        @click="
-                            $cart_store.removeFromCart(_person_id, _product_id)
-                        "
+                        @click="cartStore.removeFromCart(personId, productId)"
+                        >Убрать</Button
                     >
-                        Убрать
-                    </Button>
                 </div>
             </aside>
             <aside class="product__tabs">
                 <BaseTab :tabs="['Характеристики', 'Комментарии']">
                     <TabPanel :class="['rounded-xl tab_panel p-8']">
-                        <Parameters :parameters="_product.parameters" />
+                        <Parameters :parameters="product.parameters" />
                     </TabPanel>
                     <TabPanel :class="['rounded-xl tab_panel p-8 space-y-4']">
                         <CommentForm
-                            v-if="_comment_form_visibility"
-                            @onSubmit="_is_editing = false"
-                            :product_id="_product_id"
+                            v-if="commentFormVisibility"
+                            @onSubmit="isEditing = false"
+                            :productId="productId"
                         />
                         <Comment
-                            v-else-if="_comment_visibility"
-                            @onEdit="() => (_is_editing = true)"
-                            :data="{
-                                id: _comment_data.id,
-                                person: _comment_data.person,
-                                advantage: _comment_data.advantage,
-                                disadvantage: _comment_data.disadvantage,
-                                comment: _comment_data.comment,
-                                rating: _comment_data.rating,
-                                date: _comment_data.date,
-                                images: _comment_data.images,
-                            }"
+                            v-else-if="commentVisibility"
+                            @onEdit="() => (isEditing = true)"
+                            :data="commentData"
                         />
-
                         <div v-else>
                             Авторизуйтесь, чтобы оставлять комментарии
                         </div>
-
                         <div
-                            v-for="comment in _product_comment.content"
+                            v-for="comment in productComment.content"
                             :key="comment.id"
                         >
                             <Comment
-                                v-if="comment.person.id !== _person_id"
-                                :data="{
-                                    id: comment.id,
-                                    person: comment.person,
-                                    advantage: comment.advantage,
-                                    disadvantage: comment.disadvantage,
-                                    comment: comment.comment,
-                                    rating: comment.rating,
-                                    date: comment.date,
-                                }"
+                                v-if="comment.person.id !== personId"
+                                :data="comment"
                             />
                         </div>
                     </TabPanel>

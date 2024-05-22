@@ -4,7 +4,7 @@ import { useCategoryStore } from '../stores/CategoryStore'
 import { RouterLink } from 'vue-router'
 import Typography from '../shared/Typography.vue'
 
-const $category_store = useCategoryStore()
+const categoryStore = useCategoryStore()
 </script>
 
 <template>
@@ -24,7 +24,7 @@ const $category_store = useCategoryStore()
                 "
             >
                 {{
-                    `/${$category_store
+                    `/${categoryStore
                         .getCategoryByPath(category)
                         .title.toLowerCase()}`
                 }}

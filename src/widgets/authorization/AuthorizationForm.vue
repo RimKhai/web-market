@@ -7,22 +7,22 @@ import { usePersonStore } from '../../stores/PersonStore'
 import Button from '../../shared/Button.vue'
 import Typography from '../../shared/Typography.vue'
 
-const $person_store = usePersonStore()
+const $personStore = usePersonStore()
 
-const _email = ref('')
-const _password = ref('')
-const _auth_success = ref(true)
+const email = ref('')
+const password = ref('')
+const authSuccess = ref(true)
 
 const login = (email, password) => {
-    console.log($person_store.login(email, password))
-    if ($person_store.login(email, password)) {
+    console.log($personStore.login(email, password))
+    if ($personStore.login(email, password)) {
         router.push(
             '/welcome/' +
-                $person_store.person[$person_store.getPersonIndexByEmail(email)]
-                    .id,
+                $personStore.person[$personStore.getPersonIndexByEmail(email)]
+                   .id,
         )
     } else {
-        _auth_success.value = false
+        authSuccess.value = false
     }
 }
 </script>
@@ -34,24 +34,24 @@ const login = (email, password) => {
     >
         <input
             class="base-input"
-            v-model="_email"
+            v-model="email"
             placeholder="E-mail"
             type="email"
         />
         <input
             class="base-input"
-            v-model="_password"
+            v-model="password"
             placeholder="Пароль"
             type="password"
         />
         <Button
             class="authorization__button"
-            @click="login(_email, _password)"
+            @click="login(email, password)"
         >
             Войти
         </Button>
         <Typography
-            v-if="!_auth_success"
+            v-if="!authSuccess"
             class="auth-warn"
         >
             Такой пользователь не найден, пройдите регистрацию

@@ -5,7 +5,7 @@ export const useCommentStore = defineStore('commentStore', {
     state: () => ({
         comments: [
             {
-                product_id: 1,
+                productId: 1,
                 content: [
                     {
                         id: 1,
@@ -44,10 +44,10 @@ export const useCommentStore = defineStore('commentStore', {
                         date: Date.now(),
                     },
                 ],
-                person_ids: new Set([1, 2, 3]),
+                personIds: new Set([1, 2, 3]),
             },
             {
-                product_id: 2,
+                productId: 2,
                 content: [
                     {
                         id: 1,
@@ -86,10 +86,10 @@ export const useCommentStore = defineStore('commentStore', {
                         date: Date.now(),
                     },
                 ],
-                person_ids: new Set([4, 5, 6]),
+                personIds: new Set([4, 5, 6]),
             },
             {
-                product_id: 3,
+                productId: 3,
                 content: [
                     {
                         id: 1,
@@ -128,10 +128,10 @@ export const useCommentStore = defineStore('commentStore', {
                         date: Date.now(),
                     },
                 ],
-                person_ids: new Set([7, 1, 8]),
+                personIds: new Set([7, 1, 8]),
             },
             {
-                product_id: 4,
+                productId: 4,
                 content: [
                     {
                         id: 1,
@@ -170,51 +170,50 @@ export const useCommentStore = defineStore('commentStore', {
                         date: Date.now(),
                     },
                 ],
-                person_ids: new Set([1, 7, 8]),
+                personIds: new Set([1, 7, 8]),
             },
         ],
     }),
 
     getters: {
         getCommentByProductId: (state) => {
-            return (product_id) =>
-                state.comments.find((item) => item.product_id == product_id) ??
-                -1
+            return (productId) =>
+                state.comments.find((item) => item.productId == productId)?? -1
         },
         getCommentById() {
-            return (product_id, id) =>
-                this.getCommentByProductId(product_id).content?.find(
+            return (productId, id) =>
+                this.getCommentByProductId(productId).content?.find(
                     (item) => item.id == id
-                ) ?? -1
+                )?? -1
         },
         getCommentByPersonId() {
-            return (product_id, person_id) =>
-                this.getCommentByProductId(product_id).content?.find(
-                    (item) => item.person.id == person_id
-                ) ?? -1
+            return (productId, personId) =>
+                this.getCommentByProductId(productId).content?.find(
+                    (item) => item.person.id == personId
+                )?? -1
         },
     },
 
     actions: {
-        setPerson(product_id, id, person) {
-            this.getCommentById(product_id, id)['person'] = person
+        setPerson(productId, id, person) {
+            this.getCommentById(productId, id)['person'] = person
         },
 
-        setAdvantage(product_id, id, advantage) {
-            this.getCommentById(product_id, id)['advantage'] = advantage
+        setAdvantage(productId, id, advantage) {
+            this.getCommentById(productId, id)['advantage'] = advantage
         },
-        setDisadvantage(product_id, id, disadvantage) {
-            this.getCommentById(product_id, id)['disadvantage'] = disadvantage
+        setDisadvantage(productId, id, disadvantage) {
+            this.getCommentById(productId, id)['disadvantage'] = disadvantage
         },
-        setComment(product_id, id, comment) {
-            this.getCommentById(product_id, id)['comment'] = comment
+        setComment(productId, id, comment) {
+            this.getCommentById(productId, id)['comment'] = comment
         },
-        setRating(product_id, id, rating) {
-            this.getCommentById(product_id, id)['rating'] = rating
+        setRating(productId, id, rating) {
+            this.getCommentById(productId, id)['rating'] = rating
         },
 
         addComment(
-            product_id,
+            productId,
             person,
             advantage,
             disadvantage,
@@ -230,41 +229,41 @@ export const useCommentStore = defineStore('commentStore', {
             ) {
                 return false
             }
-            if (this.getCommentByProductId(product_id) == -1) {
+            if (this.getCommentByProductId(productId) == -1) {
                 this.comments = [
-                    ...this.comments,
+                   ...this.comments,
                     {
-                        product_id: Number(product_id),
+                        productId: Number(productId),
                         content: [],
-                        person_ids: new Set(),
+                        personIds: new Set(),
                     },
                 ]
             }
 
             if (
-                this.getCommentByProductId(product_id).person_ids.has(person.id)
+                this.getCommentByProductId(productId).personIds.has(person.id)
             ) {
-                this.getCommentByPersonId(product_id, person.id).advantage =
+                this.getCommentByPersonId(productId, person.id).advantage =
                     advantage
-                this.getCommentByPersonId(product_id, person.id).disadvantage =
+                this.getCommentByPersonId(productId, person.id).disadvantage =
                     disadvantage
-                this.getCommentByPersonId(product_id, person.id).comment =
+                this.getCommentByPersonId(productId, person.id).comment =
                     comment
-                this.getCommentByPersonId(product_id, person.id).rating = rating
-                this.getCommentByPersonId(product_id, person.id).images = images
+                this.getCommentByPersonId(productId, person.id).rating = rating
+                this.getCommentByPersonId(productId, person.id).images = images
             } else {
-                this.getCommentByProductId(product_id).content = [
-                    ...this.getCommentByProductId(product_id).content,
+                this.getCommentByProductId(productId).content = [
+                   ...this.getCommentByProductId(productId).content,
                     {
                         id:
-                            this.getCommentByProductId(product_id).content
-                                .length == 0
-                                ? 1
+                            this.getCommentByProductId(productId).content
+                               .length == 0
+                               ? 1
                                 : Number(
-                                      this.getCommentByProductId(product_id)
-                                          .content[
-                                          this.getCommentByProductId(product_id)
-                                              .content.length - 1
+                                      this.getCommentByProductId(productId)
+                                         .content[
+                                          this.getCommentByProductId(productId)
+                                             .content.length - 1
                                       ]['id']
                                   ) + 1,
                         person: {
@@ -280,35 +279,33 @@ export const useCommentStore = defineStore('commentStore', {
                     },
                 ]
             }
-            this.getCommentByProductId(product_id).person_ids.add(person.id)
-            useProductStore().getProductById(product_id).totalRating =
-                this.getCommentByProductId(product_id).content.reduce(
+            this.getCommentByProductId(productId).personIds.add(person.id)
+            useProductStore().getProductById(productId).totalRating =
+                this.getCommentByProductId(productId).content.reduce(
                     (accum, item) => {
                         return accum + Number(item.rating)
                     },
                     0
                 ) /
-                (this.getCommentByProductId(product_id).content.length == 0
-                    ? 1
-                    : this.getCommentByProductId(product_id).content.length)
+                (this.getCommentByProductId(productId).content.length == 0
+                   ? 1
+                    : this.getCommentByProductId(productId).content.length)
 
-            console.log(this.getCommentByPersonId(product_id, person.id))
             return false
         },
 
-        removeComment(product_id, id) {
-            this.getCommentByProductId(product_id).content =
-                this.getCommentByProductId(product_id).content.filter(
+        removeComment(productId, id) {
+            this.getCommentByProductId(productId).content =
+                this.getCommentByProductId(productId).content.filter(
                     (item) => {
                         if (item.id === id) {
                             this.getCommentByProductId(
-                                product_id
-                            ).person_ids.delete(item.person.id)
+                                productId
+                            ).personIds.delete(item.person.id)
                         }
-                        return item.id !== id
+                        return item.id!== id
                     }
                 )
-            console.log(this.getCommentByProductId(product_id))
         },
     },
 })

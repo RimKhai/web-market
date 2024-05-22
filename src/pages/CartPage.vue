@@ -12,27 +12,22 @@ import Typography from '../shared/Typography.vue'
 import Button from '../shared/Button.vue'
 import BaseCheckbox from '../features/BaseCheckbox.vue'
 
-const $cart_store = useCartStore()
-const $product_store = useProductStore()
-const $person_store = usePersonStore()
-const $route = useRoute()
-const _person_id = computed(() => $person_store.logined_person_id)
-const _cart = computed(() =>
-    $cart_store.getCartItemByPersonId(_person_id.value),
-)
+const cartStore = useCartStore()
+const productStore = useProductStore()
+const personStore = usePersonStore()
+const route = useRoute()
+const personId = computed(() => personStore.loginedPersonId)
+const cart = computed(() => cartStore.getCartItemByPersonId(personId.value))
 
 const checkboxHandler = () => {
-    $cart_store.toggleAll(
-        _person_id.value,
-        !$cart_store.isAllChecked(_person_id.value),
-    )
+    cartStore.toggleAll(personId.value, !cartStore.isAllChecked(personId.value))
 }
 
 watchEffect(() => {
-    if (_person_id.value === -1) {
+    if (personId.value === -1) {
         router.push('/authorization/reg')
-    } else if ($route.params.id !== _person_id.value) {
-        router.push(`/cart/${_person_id.value}`)
+    } else if (route.params.id !== personId.value) {
+        router.push(`/cart/${personId.value}`)
     }
 })
 </script>
@@ -40,37 +35,35 @@ watchEffect(() => {
 <template>
     <div class="cart">
         <div
-            v-if="_cart?.content?.length !== 0"
+            v-if="cart.content.length !== 0"
             class="cart__check-all"
         >
             <BaseCheckbox
                 class="check-all"
                 @onClick="checkboxHandler()"
-                :checked="$cart_store.isAllChecked(_person_id)"
+                :checked="cartStore.isAllChecked(personId)"
             />
             <Typography @click="checkboxHandler()">Выбрать все</Typography>
         </div>
         <div
-            v-for="product in _cart.content"
+            v-for="product in cart.content"
             :key="product.id"
         >
             <CartProductCard
                 :id="product.id"
-                :name="$product_store.getProductById(product.id)?.name"
-                :price="$product_store.getProductById(product.id)?.price"
-                :image_name="
-                    $product_store.getProductById(product.id).image_name
-                "
+                :name="productStore.getProductById(product.id)?.name"
+                :price="productStore.getProductById(product.id)?.price"
+                :imageName="productStore.getProductById(product.id).imageName"
             />
         </div>
         <div
-            v-if="_cart.content.length == 0"
+            v-if="cart.content.length == 0"
             class="text-center space-y-4"
         >
-            <Typography tag_name="h2">в корзине ничего нет</Typography>
+            <Typography tagName="h2">в корзине ничего нет</Typography>
             <RouterLink to="/">
                 <Typography
-                    tag_name="h3"
+                    tagName="h3"
                     class="underline text-blue-600"
                 >
                     добавьте товары в корзину
@@ -82,23 +75,19 @@ watchEffect(() => {
 
     <footer>
         <p class="flex space-x-1">
-            {{ `Итог: ${$cart_store.getTotalCost(_person_id)} Руб.` }}
+            {{ `Итог: ${cartStore.getTotalCost(personId)} Руб.` }}
         </p>
 
         <p>
-            {{
-                `Количество товаров: ${$cart_store.getTotalQuantity(_person_id)}`
-            }}
+            {{ `Количество товаров: ${cartStore.getTotalQuantity(personId)}` }}
         </p>
         <RouterLink to="/order-reg">
             <Button
                 class="cart-button"
-                :disabled="
-                    $cart_store.getTotalQuantity(_person_id) ? false : true
-                "
+                :disabled="cartStore.getTotalQuantity(personId) ? false : true"
             >
                 {{
-                    $cart_store.getTotalQuantity(_person_id)
+                    cartStore.getTotalQuantity(personId)
                         ? 'Оформить заказ'
                         : 'Добавьте товары'
                 }}

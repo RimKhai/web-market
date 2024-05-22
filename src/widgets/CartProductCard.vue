@@ -6,67 +6,67 @@ import Counter from '../features/Counter.vue'
 import BaseCheckbox from '../features/BaseCheckbox.vue'
 import Typography from '../shared/Typography.vue'
 
-const $props = defineProps({
+const props = defineProps({
     id: Number,
     name: String,
     price: Number,
-    image_name: String,
+    imageName: String,
 })
 
-const $cart_store = useCartStore()
-const $person_store = usePersonStore()
-const _person_id = computed(() => $person_store.logined_person_id)
-const _img_src = ref()
-const _product_link = computed(() => `/all/product/${$props.id}`)
+const cartStore = useCartStore()
+const personStore = usePersonStore()
+const personId = computed(() => personStore.loginedPersonId)
+const imgSrc = ref()
+const productLink = computed(() => `/all/product/${props.id}`)
 
-const plus = id => {
-    $cart_store.increaseQuantity(_person_id.value, id)
+const increaseQuantity = id => {
+    cartStore.increaseQuantity(personId.value, id)
 }
 
-const minus = id => {
-    $cart_store.decreaseQuantity(_person_id.value, id)
+const decreaseQuantity = id => {
+    cartStore.decreaseQuantity(personId.value, id)
     removeCartItemOnZero(id)
 }
-const change = (event, id) => {
-    $cart_store.changeQuantity(_person_id.value, id, event.target.value)
+const changeQuantity = (event, id) => {
+    cartStore.changeQuantity(personId.value, id, event.target.value)
     removeCartItemOnZero(id)
 }
 
 const removeCartItemOnZero = id => {
-    if ($cart_store.getCartItemById(_person_id.value, id).quantity <= 0) {
-        $cart_store.removeFromCart(_person_id.value, id)
+    if (cartStore.getCartItemById(personId.value, id).quantity <= 0) {
+        cartStore.removeFromCart(personId.value, id)
     }
 }
 
-import(`../assets/${$props.image_name}.png`).then(image_imports => {
-    _img_src.value = image_imports.default
+import(`../assets/${props.imageName}.png`).then(imageImports => {
+    imgSrc.value = imageImports.default
 })
 </script>
 
 <template>
     <div class="cart-product-card">
         <BaseCheckbox
-            @onClick="$cart_store.toggleCheck(_person_id, id)"
-            :checked="$cart_store.isChecked(_person_id, $props.id)"
+            @onClick="cartStore.toggleCheck(personId, props.id)"
+            :checked="cartStore.isChecked(personId, props.id)"
         />
-        <RouterLink :to="_product_link">
+        <RouterLink :to="productLink">
             <img
                 class="cart-product-card__image"
-                :src="_img_src"
+                :src="imgSrc"
                 alt="failed"
             />
         </RouterLink>
-        <RouterLink :to="_product_link">
-            <Typography tag_name="h4">{{ name }}</Typography>
+        <RouterLink :to="productLink">
+            <Typography tagName="h4">{{ name }}</Typography>
         </RouterLink>
         <div class="cart-product-card__actions">
             <Counter
-                @onMinus="minus(id)"
-                @onPlus="plus(id)"
-                @onChange="event => change(event, id)"
+                @onMinus="decreaseQuantity(props.id)"
+                @onPlus="increaseQuantity(props.id)"
+                @onChange="event => changeQuantity(event, props.id)"
             />
             <Typography
-                @click="$cart_store.removeFromCart(_person_id, id)"
+                @click="cartStore.removeFromCart(personId, props.id)"
                 class="remover cursor-pointer"
             >
                 удалить

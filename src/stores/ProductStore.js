@@ -9,8 +9,8 @@ export const useProductStore = defineStore('productStore', {
                 description: 'description',
                 quantity: 4,
                 price: 120000,
-                total_rating: 2,
-                image_name: 'b_apple_pro_max',
+                totalRating: 2,
+                imageName: 'b_apple_pro_max',
                 parameters: {
                     Бренд: 'Apple',
                     Модель: 'Pro Max',
@@ -35,8 +35,8 @@ export const useProductStore = defineStore('productStore', {
                 description: 'description',
                 quantity: 6,
                 price: 100000,
-                total_rating: 3,
-                image_name: 'samsung_a52',
+                totalRating: 3,
+                imageName:'samsung_a52',
                 parameters: {
                     Бренд: 'Samsung',
                     Модель: 'A52',
@@ -61,8 +61,8 @@ export const useProductStore = defineStore('productStore', {
                 description: 'description',
                 quantity: 2,
                 price: 110000,
-                total_rating: 4,
-                image_name: 'apple_pro_max',
+                totalRating: 4,
+                imageName: 'apple_pro_max',
                 parameters: {
                     Бренд: 'Apple',
                     Модель: 'Pro Max',
@@ -87,8 +87,8 @@ export const useProductStore = defineStore('productStore', {
                 description: 'description',
                 quantity: 4,
                 price: 12000,
-                total_rating: 1.8,
-                image_name: 'hyperx_ears',
+                totalRating: 1.8,
+                imageName: 'hyperx_ears',
                 parameters: {
                     Бренд: 'Hyper-X',
                     МОдель: 'Ears 1',
@@ -109,8 +109,8 @@ export const useProductStore = defineStore('productStore', {
                 description: 'description',
                 quantity: 3.6,
                 price: 16000,
-                total_rating: 3,
-                image_name: 'marshall',
+                totalRating: 3,
+                imageName:'marshall',
                 parameters: {
                     Бренд: 'Senheizer',
                     Модель: 'Ears 1',
@@ -131,8 +131,8 @@ export const useProductStore = defineStore('productStore', {
                 description: 'description',
                 quantity: 2,
                 price: 11000,
-                total_rating: 3,
-                image_name: 'razer_ears',
+                totalRating: 3,
+                imageName: 'razer_ears',
                 parameters: {
                     Бренд: 'Hyper-X',
                     МОдель: 'Ears 1',
@@ -153,8 +153,8 @@ export const useProductStore = defineStore('productStore', {
                 description: 'description',
                 quantity: 4,
                 price: 120,
-                total_rating: 3,
-                image_name: 'chahol_black',
+                totalRating: 3,
+                imageName: 'chahol_black',
                 parameters: {
                     Бренд: 'Chahol',
                     'Модель телефона': 'Apple',
@@ -168,8 +168,8 @@ export const useProductStore = defineStore('productStore', {
                 description: 'description',
                 quantity: 6,
                 price: 100,
-                total_rating: 3,
-                image_name: 'chahol_blue',
+                totalRating: 3,
+                imageName: 'chahol_blue',
                 parameters: {
                     Бренд: 'Chahol',
                     'Модель телефона': 'Apple',
@@ -183,8 +183,8 @@ export const useProductStore = defineStore('productStore', {
                 description: 'description',
                 quantity: 2,
                 price: 110,
-                total_rating: 3,
-                image_name: 'chahol_red',
+                totalRating: 3,
+                imageName: 'chahol_red',
                 parameters: {
                     Бренд: 'Chahol',
                     'Модель телефона': 'Apple',
@@ -198,8 +198,8 @@ export const useProductStore = defineStore('productStore', {
                 description: 'description',
                 quantity: 4,
                 price: 1200,
-                total_rating: 3,
-                image_name: 'powerbank_1',
+                totalRating: 3,
+                imageName: 'powerbank_1',
                 parameters: {
                     Бренд: 'PowerBank',
                     Модель: 'Apply',
@@ -215,8 +215,8 @@ export const useProductStore = defineStore('productStore', {
                 description: 'description',
                 quantity: 6,
                 price: 1000,
-                total_rating: 3,
-                image_name: 'powerbank_2',
+                totalRating: 3,
+                imageName: 'powerbank_2',
                 parameters: {
                     Бренд: 'Magnet',
                     Модель: 'Charge',
@@ -232,8 +232,8 @@ export const useProductStore = defineStore('productStore', {
                 description: 'description',
                 quantity: 2,
                 price: 1100,
-                total_rating: 3,
-                image_name: 'powerbank_3',
+                totalRating: 3,
+                imageName: 'powerbank_3',
                 parameters: {
                     Бренд: 'Electric',
                     Модель: 'Charge',
@@ -249,8 +249,8 @@ export const useProductStore = defineStore('productStore', {
                 description: 'description',
                 quantity: 4,
                 price: 12300,
-                total_rating: 3,
-                image_name: 'portable_1',
+                totalRating: 3,
+                imageName: 'portable_1',
                 parameters: {
                     Бренд: 'JBL',
                     Модель: 'UltraBass',
@@ -267,8 +267,8 @@ export const useProductStore = defineStore('productStore', {
                 description: 'description',
                 quantity: 6,
                 price: 10010,
-                total_rating: 3,
-                image_name: 'portable_2',
+                totalRating: 3,
+                imageName: 'portable_2',
                 parameters: {
                     Бренд: 'JBL',
                     Модель: 'Storm',
@@ -285,8 +285,8 @@ export const useProductStore = defineStore('productStore', {
                 description: 'description',
                 quantity: 2,
                 price: 11020,
-                total_rating: 3,
-                image_name: 'portable_3',
+                totalRating: 3,
+                imageName: 'portable_3',
                 parameters: {
                     Бренд: 'JBL',
                     Модель: 'Clear Sound',
@@ -301,72 +301,30 @@ export const useProductStore = defineStore('productStore', {
     }),
 
     getters: {
-        getProductById: state => {
-            return product_id =>
-                state.products.find(item => item.id == product_id) ?? -1
+        getProductById: (state) => {
+            return (product_id) =>
+                state.products.find((item) => item.id == product_id) ?? -1
         },
     },
 
     actions: {
         sortBy(sortType) {
-            if (sortType === 'byId') {
-                this.products = this.products.sort((a, b) => {
-                    if (a.id > b.id) {
-                        return 1
-                    } else if (a.id < b.id) {
-                        return -1
-                    } else {
-                        return 0
-                    }
-                })
-            }
-
-            if (sortType === 'alphabetical') {
-                this.products = this.products.sort((a, b) => {
-                    if (a.name > b.name) {
-                        return 1
-                    } else if (a.name < b.name) {
-                        return -1
-                    } else {
-                        return 0
-                    }
-                })
-            }
-
-            if (sortType === 'priceLow') {
-                this.products = this.products.sort((a, b) => {
-                    if (a.price > b.price) {
-                        return 1
-                    } else if (a.price < b.price) {
-                        return -1
-                    } else {
-                        return 0
-                    }
-                })
-            }
-
-            if (sortType === 'priceHigh') {
-                this.products = this.products.sort((a, b) => {
-                    if (a.price < b.price) {
-                        return 1
-                    } else if (a.price > b.price) {
-                        return -1
-                    } else {
-                        return 0
-                    }
-                })
-            }
-
-            if (sortType === 'rating') {
-                this.products = this.products.sort((a, b) => {
-                    if (a.total_rating < b.total_rating) {
-                        return 1
-                    } else if (a.total_rating > b.total_rating) {
-                        return -1
-                    } else {
-                        return 0
-                    }
-                })
+            switch (sortType) {
+                case 'byId':
+                    this.products.sort((a, b) => a.id - b.id);
+                    break;
+                case 'alphabetical':
+                    this.products.sort((a, b) => a.name.localeCompare(b.name));
+                    break;
+                case 'priceLow':
+                    this.products.sort((a, b) => a.price - b.price);
+                    break;
+                case 'priceHigh':
+                    this.products.sort((a, b) => b.price - a.price);
+                    break;
+                case 'rating':
+                    this.products.sort((a, b) => a.totalRating - b.totalRating);
+                    break;
             }
         },
     },

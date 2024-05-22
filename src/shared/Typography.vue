@@ -1,8 +1,8 @@
 <script setup>
 import { computed } from 'vue'
 
-const $props = defineProps({
-    tag_name: {
+const props = defineProps({
+    tagName: {
         type: String,
         default: 'p',
     },
@@ -12,21 +12,21 @@ const $props = defineProps({
     },
     size: {
         type: String,
-        default: 'm',
+        default: '',
     },
 })
 
 const classes = computed(() => [
     'typography',
-    `size_${$props.size}`,
-    $props.bold ? 'bold' : '',
-    `tag_${$props.tag_name}`,
+    `size_${props.size}`,
+    props.bold ? 'bold' : '',
+    `tag_${props.tagName}`,
 ])
 </script>
 
 <template>
     <component
-        :is="tag_name"
+        :is="tagName"
         :class="classes"
     >
         <slot></slot>

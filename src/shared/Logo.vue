@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import { onMounted, ref } from 'vue'
 import { RouterLink } from 'vue-router'
 
@@ -32,7 +32,7 @@ onMounted(() => {
             type="globe"
         />
         <Typography
-            tag_name="h4"
+            tagName="h4"
             bold
             >{{ _screen_width > 768 ? 'WEB MARKET' : 'WB' }}</Typography
         >

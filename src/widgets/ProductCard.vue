@@ -29,52 +29,52 @@ const $props = defineProps({
         type: Number,
         default: 109999,
     },
-    image_name: {
+    imageName: {
         type: String,
         default: '',
     },
 })
 
-const $cart_store = useCartStore()
-const $product_store = useProductStore()
-const $person_store = usePersonStore()
+const cartStore = useCartStore()
+const productStore = useProductStore()
+const personStore = usePersonStore()
 const $route = useRoute()
 
-const _img_src = ref()
-const _person_id = computed(() => $person_store.logined_person_id)
-const _product_link = computed(
+const imgSource = ref('')
+const personId = computed(() => personStore.loginedpersonId)
+const productLink = computed(
     () => `/${$route.params.category}/product/${$props.id}`,
 )
-const _product = computed(() => $product_store.getProductById($props.id))
+const product = computed(() => productStore.getProductById($props.id))
 
 const onClick = id => {
-    if (!$cart_store.isInCart(_person_id.value, id)) {
-        $cart_store.addToCart(_person_id.value, id)
+    if (!cartStore.isInCart(personId.value, id)) {
+        cartStore.addToCart(personId.value, id)
     }
 }
 
-import(`../assets/${$props.image_name}.png`).then(image_imports => {
-    _img_src.value = image_imports.default
+import(`../assets/${$props.imageName}.png`).then(imageImports => {
+    imgSource.value = imageImports.default
 })
 </script>
 
 <template>
     <div class="product-card">
-        <RouterLink :to="_product_link">
+        <RouterLink :to="productLink">
             <img
                 class="product-card__image"
-                :src="_img_src"
+                :src="imgSource"
                 alt="failed"
             />
         </RouterLink>
         <section class="product-card__container">
             <div class="product-card__description">
                 <div class="flex items-center gap-2">
-                    <RouterLink :to="_product_link">
-                        <Typography tag_name="p">{{ name }}</Typography>
+                    <RouterLink :to="productLink">
+                        <Typography tagName="p">{{ name }}</Typography>
                     </RouterLink>
-                    <Typography tag_name="p">
-                        {{ _product.total_rating.toFixed(1) }}
+                    <Typography tagName="p">
+                        {{ product.totalRating.toFixed(1) }}
                         <span class="star">★</span>
                     </Typography>
                 </div>
@@ -85,11 +85,11 @@ import(`../assets/${$props.image_name}.png`).then(image_imports => {
             }}</Typography>
             <div class="product-card__actions">
                 <Typography>{{ price }} Руб.</Typography>
-                <div v-if="_person_id !== -1">
+                <div v-if="personId !== -1">
                     <Button
                         size="m"
                         color="primary"
-                        v-if="!$cart_store.isInCart(_person_id, id)"
+                        v-if="!cartStore.isInCart(personId, id)"
                         @click="onClick(id)"
                     >
                         В корзину
@@ -98,7 +98,7 @@ import(`../assets/${$props.image_name}.png`).then(image_imports => {
                         size="m"
                         color="disabled"
                         v-else
-                        @click="$cart_store.removeFromCart(_person_id, id)"
+                        @click="cartStore.removeFromCart(personId, id)"
                     >
                         Убрать
                     </Button>

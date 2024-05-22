@@ -8,35 +8,35 @@ import InputEditable from '../features/InputEditable.vue'
 import Button from '../shared/Button.vue'
 import Typography from '../shared/Typography.vue'
 
-const $person_store = usePersonStore()
+const personStore = usePersonStore()
 
-const _logined_person = computed(() => $person_store.getCurrentPerson)
+const loginedPerson = computed(() => personStore.getCurrentPerson)
 
-const _name = ref(_logined_person.value.name)
-const _second_name = ref(_logined_person.value.second_name)
-const _email = ref(_logined_person.value.email)
-const _password = ref(_logined_person.value.password)
+const name = ref(loginedPerson.value.name)
+const secondName = ref(loginedPerson.value.secondName)
+const email = ref(loginedPerson.value.email)
+const password = ref(loginedPerson.value.password)
 
 const changeName = event => {
-    _name.value = event.target.value
-    $person_store.changeName(_logined_person.value.id, event.target.value)
+    name.value = event.target.value
+    personStore.changeName(loginedPerson.value.id, event.target.value)
 }
 const changeSecondName = event => {
-    _second_name.value = event.target.value
-    $person_store.changeSecondName(_logined_person.value.id, event.target.value)
+    secondName.value = event.target.value
+    personStore.changeSecondName(loginedPerson.value.id, event.target.value)
 }
 const changeEmail = event => {
-    _email.value = event.target.value
-    $person_store.changeEmail(_logined_person.value.id, event.target.value)
+    email.value = event.target.value
+    personStore.changeEmail(loginedPerson.value.id, event.target.value)
 }
 const changePassword = event => {
-    _password.value = event.target.value
-    $person_store.changePassword(_logined_person.value.id, event.target.value)
+    password.value = event.target.value
+    personStore.changePassword(loginedPerson.value.id, event.target.value)
 }
 
 const clickHandler = () => {
     router.push('/authorization/auth')
-    $person_store.quit()
+    personStore.quit()
 }
 </script>
 
@@ -52,12 +52,12 @@ const clickHandler = () => {
             </Button>
         </div>
         <section>
-            <Typography tag_name="h3">Информация профиля</Typography>
+            <Typography tagName="h3">Информация профиля</Typography>
 
             <div class="profile-page__form">
                 <Typography class="input-label">Имя:</Typography>
                 <InputEditable
-                    :text="_name"
+                    :text="name"
                     :onChange="event => changeName(event)"
                 />
             </div>
@@ -65,7 +65,7 @@ const clickHandler = () => {
             <div class="profile-page__form">
                 <Typography class="input-label">Фамилия:</Typography>
                 <InputEditable
-                    :text="_second_name"
+                    :text="secondName"
                     :onChange="event => changeSecondName(event)"
                 />
             </div>
@@ -73,7 +73,7 @@ const clickHandler = () => {
             <div class="profile-page__form">
                 <Typography class="input-label">E-mail:</Typography>
                 <InputEditable
-                    :text="_email"
+                    :text="email"
                     :onChange="event => changeEmail(event)"
                 />
             </div>
@@ -81,7 +81,7 @@ const clickHandler = () => {
             <div class="profile-page__form">
                 <Typography class="input-label">Пароль:</Typography>
                 <InputEditable
-                    :text="_password"
+                    :text="password"
                     :onChange="event => changePassword(event)"
                 />
             </div>

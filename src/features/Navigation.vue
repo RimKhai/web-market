@@ -28,7 +28,7 @@ const props = defineProps({
                         fill="none"
                     />
                     <Typography
-                        tag_name="span"
+                        tagName="span"
                         class="navigaion__typography"
                         size="s"
                         >{{ item.label }}</Typography

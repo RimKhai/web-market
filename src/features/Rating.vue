@@ -1,23 +1,22 @@
 <script setup>
-import { defineProps, defineEmits } from 'vue'
 import BaseIcon from '../shared/BaseIcon.vue'
 
 const props = defineProps({
     value: Number,
-    total_rating: Number,
+    totalRating: Number,
 })
 
-const $emit = defineEmits('updateRating', value)
+const emit = defineEmits(['updateRating'])
 
 const setRating = star => {
-    $emit('updateRating', star)
+    emit('updateRating', star)
 }
 </script>
 
 <template>
     <div class="wrapper">
         <span
-            v-for="star in total_rating"
+            v-for="star in totalRating"
             :key="star"
             class="star"
             :class="{ filled: star <= value }"

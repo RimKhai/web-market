@@ -9,13 +9,13 @@ import Logo from '../shared/Logo.vue'
 import Navigation from '../features/Navigation.vue'
 import Button from '../shared/Button.vue'
 
-const $person_store = usePersonStore()
-const $cart_store = useCartStore()
+const personStore = usePersonStore()
+const cartStore = useCartStore()
 
-const _person_id = computed(() => $person_store.logined_person_id)
-const _logined_person = computed(() => $person_store.getCurrentPerson)
-const _count_of_products = computed(
-    () => $cart_store.getCartByPersonId(_person_id.value)?.content?.length,
+const personId = computed(() => personStore.loginedPersonId)
+const loginedPerson = computed(() => personStore.getCurrentPerson)
+const countOfProducts = computed(
+    () => cartStore.getCartByPersonId(personId.value)?.content?.length,
 )
 </script>
 
@@ -25,20 +25,20 @@ const _count_of_products = computed(
             <Logo />
             <div class="header-menu">
                 <Navigation
-                    v-if="_person_id !== -1"
+                    v-if="personId !== -1"
                     :data="[
                         {
                             label: 'Корзина',
                             icon: 'cart',
-                            count: _count_of_products,
-                            link: `/cart/${_person_id}`,
+                            count: countOfProducts,
+                            link: `/cart/${personId}`,
                         },
                     ]"
                 />
                 <PersonMenu
-                    v-if="_person_id !== -1"
-                    :name="_logined_person?.name"
-                    :secondName="_logined_person?.second_name"
+                    v-if="personId !== -1"
+                    :name="loginedPerson?.name"
+                    :secondName="loginedPerson?.secondName"
                 />
                 <RouterLink
                     v-else

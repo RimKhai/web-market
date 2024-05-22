@@ -22,7 +22,7 @@ export default {
                 class="nested-item__button"
             >
                 <Typography
-                    tag_name="span"
+                    tagName="span"
                     class="nested-item__button"
                 >
                     {{ item.title }}
@@ -30,7 +30,7 @@ export default {
             </RouterLink>
             <Typography
                 v-else
-                tag_name="span"
+                tagName="span"
                 class="nested-item__button"
             >
                 {{ item.title }}

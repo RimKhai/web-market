@@ -37,7 +37,7 @@ const classes = computed(() => [
     >
         <Typography
             class="button__typography"
-            tag_name="span"
+            tagName="span"
         >
             <slot></slot>
         </Typography>
