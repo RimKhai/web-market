@@ -1,49 +1,59 @@
 <script setup>
-    import { ref } from 'vue'
-    import { router } from '../../router'
+import { ref } from 'vue'
+import { router } from '../../router'
 
-    import { usePersonStore } from '../../stores/PersonStore'
+import { usePersonStore } from '../../stores/PersonStore'
 
-    import Button from '../../shared/Button.vue'
-    import Typography from '../../shared/Typography.vue'
+import Button from '../../shared/Button.vue'
+import Typography from '../../shared/Typography.vue'
 
-    const $person_store = usePersonStore()
+const $person_store = usePersonStore()
 
-    const _email = ref('')
-    const _password = ref('')
-    const _auth_success = ref(true)
+const _email = ref('')
+const _password = ref('')
+const _auth_success = ref(true)
 
-    const login = (email, password) => {
-        console.log($person_store.login(email, password))
-        if ($person_store.login(email, password)) {
-            router.push(
-                '/welcome/' +
-                    $person_store.person[$person_store.getPersonIndexByEmail(email)].id
-            )
-        } else {
-            _auth_success.value = false
-        }
+const login = (email, password) => {
+    console.log($person_store.login(email, password))
+    if ($person_store.login(email, password)) {
+        router.push(
+            '/welcome/' +
+                $person_store.person[$person_store.getPersonIndexByEmail(email)]
+                    .id,
+        )
+    } else {
+        _auth_success.value = false
     }
+}
 </script>
 
 <template>
-    <form @submit.prevent="console.log('auth')" class="authorization__form">
+    <form
+        @submit.prevent="console.log('auth')"
+        class="authorization__form"
+    >
         <input
             class="base-input"
             v-model="_email"
             placeholder="E-mail"
-            type="email" />
+            type="email"
+        />
         <input
             class="base-input"
             v-model="_password"
             placeholder="Пароль"
-            type="password" />
+            type="password"
+        />
         <Button
             class="authorization__button"
-            @click="login(_email, _password)">
+            @click="login(_email, _password)"
+        >
             Войти
         </Button>
-        <Typography v-if="!_auth_success" class="auth-warn">
+        <Typography
+            v-if="!_auth_success"
+            class="auth-warn"
+        >
             Такой пользователь не найден, пройдите регистрацию
         </Typography>
         <button class="authorization__link">
@@ -53,11 +63,11 @@
 </template>
 
 <style lang="scss" scoped>
-    input {
-        min-width: 400px;
-    }
+input {
+    min-width: 400px;
+}
 
-    .auth-warn {
-        color: $pallete-warning;
-    }
+.auth-warn {
+    color: $pallete-warning;
+}
 </style>

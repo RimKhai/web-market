@@ -1,14 +1,8 @@
 <script setup>
-    import { ref } from 'vue'
-    import {
-        TabGroup,
-        TabList,
-        Tab,
-        TabPanels,
-        TabPanel,
-    } from '@headlessui/vue'
+import { ref } from 'vue'
+import { TabGroup, TabList, Tab, TabPanels, TabPanel } from '@headlessui/vue'
 
-    const props = defineProps(['tabs'])
+const props = defineProps(['tabs'])
 </script>
 
 <template>
@@ -19,13 +13,15 @@
                     v-for="tab in tabs"
                     as="template"
                     :key="tab"
-                    v-slot="{ selected }">
+                    v-slot="{ selected }"
+                >
                     <button
                         :class="[
                             'w-full rounded-lg py-2.5 text-sm leading-5',
                             'ring-[#b18fd7] ring-opacity-60 ring-offset-1 ring-offset-[#b18fd7] focus:outline-none focus:ring-2',
                             selected ? 'tab active shadow' : 'tab',
-                        ]">
+                        ]"
+                    >
                         {{ tab }}
                     </button>
                 </Tab>
@@ -39,19 +35,19 @@
 </template>
 
 <style lang="scss" scoped>
-    .tab {
-        background-color: $primary-color;
-        transition-duration: 500ms;
-        &.active {
-            background-color: $accent-color;
-        }
-        &:hover {
-            background-color: rgba($color: $accent-color, $alpha: 0.8);
-        }
+.tab {
+    background-color: $primary-color;
+    transition-duration: 500ms;
+    &.active {
+        background-color: $accent-color;
     }
+    &:hover {
+        background-color: rgba($color: $accent-color, $alpha: 0.8);
+    }
+}
 
-    .tab_panel {
-        background-color: $background-color;
-        color: $text-color;
-    }
+.tab_panel {
+    background-color: $background-color;
+    color: $text-color;
+}
 </style>

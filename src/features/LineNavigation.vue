@@ -1,10 +1,10 @@
 <script setup>
-    import { useCategoryStore } from '../stores/CategoryStore'
+import { useCategoryStore } from '../stores/CategoryStore'
 
-    import { RouterLink } from 'vue-router'
-    import Typography from '../shared/Typography.vue'
+import { RouterLink } from 'vue-router'
+import Typography from '../shared/Typography.vue'
 
-    const $category_store = useCategoryStore()
+const $category_store = useCategoryStore()
 </script>
 
 <template>
@@ -14,13 +14,15 @@
         </RouterLink>
         <div
             v-for="(category, index) in $route.params.category"
-            :key="category">
+            :key="category"
+        >
             <RouterLink
                 :to="
                     '/' +
                     $route.params.category.slice(0, index + 1).join('/') +
                     '/products'
-                ">
+                "
+            >
                 {{
                     `/${$category_store
                         .getCategoryByPath(category)

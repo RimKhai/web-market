@@ -1,37 +1,37 @@
 <script setup>
-    import { ref } from 'vue'
-    import {
-        Listbox,
-        ListboxLabel,
-        ListboxButton,
-        ListboxOptions,
-        ListboxOption,
-    } from '@headlessui/vue'
+import { ref } from 'vue'
+import {
+    Listbox,
+    ListboxLabel,
+    ListboxButton,
+    ListboxOptions,
+    ListboxOption,
+} from '@headlessui/vue'
 
-    const props = defineProps({
-        data: {
-            type: Array,
-            default: [
-                {
-                    title: 'Option 1',
-                },
-                {
-                    title: 'Option 2',
-                },
-            ],
-        },
-        defaultTitle: {
-            type: String,
-            default: 'Select an option'
-        },
-        selectedDataIndex: {
-            type: Number,
-            default: 0,
-        },
-    })
+const props = defineProps({
+    data: {
+        type: Array,
+        default: [
+            {
+                title: 'Option 1',
+            },
+            {
+                title: 'Option 2',
+            },
+        ],
+    },
+    defaultTitle: {
+        type: String,
+        default: 'Select an option',
+    },
+    selectedDataIndex: {
+        type: Number,
+        default: 0,
+    },
+})
 
-    const data = ref(props.data)
-    const selectedData = ref(data.value[props.selectedDataIndex])
+const data = ref(props.data)
+const selectedData = ref(data.value[props.selectedDataIndex])
 </script>
 
 <template>
@@ -39,7 +39,8 @@
         <Listbox v-model="selectedData">
             <div class="relative">
                 <ListboxButton
-                    class="relative w-full cursor-default rounded-lg bg-violet-700 text-black py-2 px-3 shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
+                    class="relative w-full cursor-default rounded-lg bg-violet-700 text-black py-2 px-3 shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm"
+                >
                     {{
                         selectedData?.title == 'undefined'
                             ? props.defaultTitle
@@ -48,21 +49,24 @@
                 </ListboxButton>
 
                 <ListboxOptions
-                    class="absolute text-center z-20 mt-1 max-h-60 w-full overflow-auto rounded-md bg-violet-500 py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
+                    class="absolute text-center z-20 mt-1 max-h-60 w-full overflow-auto rounded-md bg-violet-500 py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm"
+                >
                     <ListboxOption
                         v-slot="{ active, selected }"
                         v-for="item in data"
                         :key="item.title"
                         :value="item"
                         @click="$emit('onClick', selectedData)"
-                        as="template">
+                        as="template"
+                    >
                         <li
                             :class="[
                                 active
                                     ? 'bg-amber-100 text-amber-900'
                                     : 'text-gray-900',
                                 'relative cursor-default select-none py-2 px-3',
-                            ]">
+                            ]"
+                        >
                             <span
                                 :class="[
                                     selected ? 'font-medium' : 'font-normal',
@@ -72,10 +76,12 @@
                             >
                             <span
                                 v-if="selected"
-                                class="absolute inset-y-0 left-0 flex items-center px-3 text-amber-600">
+                                class="absolute inset-y-0 left-0 flex items-center px-3 text-amber-600"
+                            >
                                 <div
                                     class="h-5 w-5"
-                                    aria-hidden="true"></div>
+                                    aria-hidden="true"
+                                ></div>
                             </span>
                         </li>
                     </ListboxOption>

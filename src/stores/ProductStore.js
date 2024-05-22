@@ -36,7 +36,7 @@ export const useProductStore = defineStore('productStore', {
                 quantity: 6,
                 price: 100000,
                 total_rating: 3,
-                image_name:'samsung_a52',
+                image_name: 'samsung_a52',
                 parameters: {
                     Бренд: 'Samsung',
                     Модель: 'A52',
@@ -110,7 +110,7 @@ export const useProductStore = defineStore('productStore', {
                 quantity: 3.6,
                 price: 16000,
                 total_rating: 3,
-                image_name:'marshall',
+                image_name: 'marshall',
                 parameters: {
                     Бренд: 'Senheizer',
                     Модель: 'Ears 1',
@@ -301,9 +301,9 @@ export const useProductStore = defineStore('productStore', {
     }),
 
     getters: {
-        getProductById: (state) => {
-            return (product_id) =>
-                state.products.find((item) => item.id == product_id) ?? -1
+        getProductById: state => {
+            return product_id =>
+                state.products.find(item => item.id == product_id) ?? -1
         },
     },
 

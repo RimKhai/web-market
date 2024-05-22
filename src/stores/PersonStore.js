@@ -21,18 +21,18 @@ export const usePersonStore = defineStore('personStore', {
     }),
 
     getters: {
-        getPersonById: (state) => {
-            return (person_id) =>
-                state.person.find((item) => item.id == person_id) ?? -1
+        getPersonById: state => {
+            return person_id =>
+                state.person.find(item => item.id == person_id) ?? -1
         },
 
-        getPersonIndexByEmail: (state) => {
-            return (email) =>
-                state.person.findIndex((item) => item.email == email) ?? -1
+        getPersonIndexByEmail: state => {
+            return email =>
+                state.person.findIndex(item => item.email == email) ?? -1
         },
 
-        getCurrentPerson: (state) => {
-            if(state.logined_person_index == -1) {
+        getCurrentPerson: state => {
+            if (state.logined_person_index == -1) {
                 return -1
             }
             return state.person[state.logined_person_index]
@@ -42,10 +42,15 @@ export const usePersonStore = defineStore('personStore', {
     actions: {
         addNewPerson(id, name, second_name, email, password) {
             // проверка на пустоту полей при регистрации
-            if(name.trim() === '' && second_name.trim() === '' && email.trim() === '' && password.trim() === '') {
+            if (
+                name.trim() === '' &&
+                second_name.trim() === '' &&
+                email.trim() === '' &&
+                password.trim() === ''
+            ) {
                 return false
             }
-            //Добавление пользователя в базу (В данном случае на клиенте)  
+            //Добавление пользователя в базу (В данном случае на клиенте)
             this.person = [
                 ...this.person,
                 {
@@ -57,11 +62,10 @@ export const usePersonStore = defineStore('personStore', {
                     logined: true,
                 },
             ]
-            
+
             //Обновление индекса и id текущего авторизованного пользователя
             this.logined_person_index = this.person.length - 1
             this.logined_person_id = id
-
 
             //Создание корзины нового пользователя
             useCartStore().cart = [
@@ -97,30 +101,30 @@ export const usePersonStore = defineStore('personStore', {
             this.logined_person_index = index
         },
 
-
         //выход из профиля, уставновка индекса и id текущего пользователя на -1, что значит отсутствие авотризованного пользователя
         quit() {
-            this.person[this.logined_person_index].logined = false,
-            this.logined_person_index = -1,
-            this.logined_person_id = -1
+            ;(this.person[this.logined_person_index].logined = false),
+                (this.logined_person_index = -1),
+                (this.logined_person_id = -1)
         },
 
         //проверка пароля при авторизации пользователя
         checkPassword(email, password) {
             if (
-                this.person[this.getPersonIndexByEmail(email)]?.password == password
+                this.person[this.getPersonIndexByEmail(email)]?.password ==
+                password
             ) {
                 return true
             }
             return false
         },
 
-
         //функция авторизации уже существующего пользователя
         login(email, password) {
             if (this.checkPassword(email, password)) {
                 this.logined_person_index = this.getPersonIndexByEmail(email)
-                this.logined_person_id = this.person[this.logined_person_index].id
+                this.logined_person_id =
+                    this.person[this.logined_person_index].id
                 this.getCurrentPerson.logined = true
 
                 return true

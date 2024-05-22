@@ -10,7 +10,6 @@ import ProfilePage from './pages/ProfilePage.vue'
 import ProductListPage from './pages/ProductListPage.vue'
 import Main from './widgets/Main.vue'
 
-
 const routes = [
     {
         path: '/authorization',
@@ -35,7 +34,7 @@ const routes = [
                 component: WelcomePage,
             },
             {
-                path:'/profile',
+                path: '/profile',
                 component: ProfilePage,
             },
             {
@@ -52,7 +51,7 @@ const routes = [
             },
             {
                 path: '/cart/:id',
-                component: CartPage
+                component: CartPage,
             },
         ],
     },

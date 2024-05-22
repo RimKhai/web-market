@@ -19,12 +19,12 @@ const $props = defineProps({
     },
 })
 
-console.log($props.items_count)
-console.log($props.items_per_page)
-console.log($props.current_page)
-
-const _page_count = computed(() => Math.ceil($props.items_count / $props.items_per_page))
-const _pages = computed(() => Array.from({ length: _page_count.value }, (_, i) => i + 1))
+const _page_count = computed(() =>
+    Math.ceil($props.items_count / $props.items_per_page),
+)
+const _pages = computed(() =>
+    Array.from({ length: _page_count.value }, (_, i) => i + 1),
+)
 </script>
 
 <template>
@@ -56,7 +56,10 @@ const _pages = computed(() => Array.from({ length: _page_count.value }, (_, i) =
                 {{ current_page + 1 }}
             </Button>
             <Button
-                v-if="current_page != _pages.length && _pages.length != current_page + 1"
+                v-if="
+                    current_page != _pages.length &&
+                    _pages.length != current_page + 1
+                "
                 @click="$emit('changePage', _pages.length)"
             >
                 {{ _pages.length }}

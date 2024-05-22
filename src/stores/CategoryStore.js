@@ -120,24 +120,23 @@ export const useCategoryStore = defineStore('categoryStore', {
     getters: {
         // в случае отсутствия совпаденйи функции возвращают -1
 
-        getCategoryById: (state) => {
-            return (category_id) =>
-                state.categories.find((item) => item.id == category_id) ?? -1
+        getCategoryById: state => {
+            return category_id =>
+                state.categories.find(item => item.id == category_id) ?? -1
         },
 
-        getCategoryByTitle: (state) => {
-            return (title) =>
-                state.categories.find((item) => item.title == title) ?? -1
+        getCategoryByTitle: state => {
+            return title =>
+                state.categories.find(item => item.title == title) ?? -1
         },
 
-        getCategoryByPath: (state) => {
-            return (path) =>
-                state.categories.find((item) => item.path == path) ?? -1
+        getCategoryByPath: state => {
+            return path =>
+                state.categories.find(item => item.path == path) ?? -1
         },
 
-        getAllByPath: (state) => {
-            return (path) =>
-                state.categories.filter((item) => item.path == path)
+        getAllByPath: state => {
+            return path => state.categories.filter(item => item.path == path)
         },
     },
 })

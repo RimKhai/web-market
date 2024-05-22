@@ -25,19 +25,19 @@ export const useCartStore = defineStore('cartStore', {
     getters: {
         //В случае отсутствия совпадений каждая из функций возращает -1, аналогично встроенному методу indexOf()
 
-        getCartItemByPersonId: (state) => {
-            return (person_id) =>
-                state.cart.find((item) => item.person_id == person_id) ?? -1
+        getCartItemByPersonId: state => {
+            return person_id =>
+                state.cart.find(item => item.person_id == person_id) ?? -1
         },
         getCartItemById() {
             return (person_id, id) =>
                 this.getCartItemByPersonId(person_id).content?.find(
-                    (item) => item.id == id
+                    item => item.id == id,
                 ) ?? -1
         },
 
         getTotalCost() {
-            return (person_id) =>
+            return person_id =>
                 this.getCartItemByPersonId(person_id).content.reduce(
                     (accum, item) => {
                         if (item.checked) {
@@ -50,11 +50,11 @@ export const useCartStore = defineStore('cartStore', {
                         }
                         return accum
                     },
-                    0
+                    0,
                 )
         },
         getTotalQuantity() {
-            return (person_id) =>
+            return person_id =>
                 this.getCartItemByPersonId(person_id).content.reduce(
                     (accum, item) => {
                         if (item.checked) {
@@ -62,12 +62,12 @@ export const useCartStore = defineStore('cartStore', {
                         }
                         return accum
                     },
-                    0
+                    0,
                 )
         },
         getCartByPersonId() {
-            return (person_id) =>
-                this.cart.find((item) => item.person_id == person_id) ?? -1
+            return person_id =>
+                this.cart.find(item => item.person_id == person_id) ?? -1
         },
     },
 
@@ -83,13 +83,13 @@ export const useCartStore = defineStore('cartStore', {
         toggleCheck(person_id, id) {
             this.getCartItemById(person_id, id).checked = !this.getCartItemById(
                 person_id,
-                id
+                id,
             ).checked
         },
 
         toggleAll(person_id, value) {
             this.getCartItemByPersonId(person_id).content.forEach(
-                (item) => (item.checked = value)
+                item => (item.checked = value),
             )
         },
 
@@ -116,14 +116,14 @@ export const useCartStore = defineStore('cartStore', {
         isAllChecked(person_id) {
             return this.getCartItemByPersonId(person_id).content.reduce(
                 (accum, item) => accum * item.checked,
-                true
+                true,
             )
         },
 
         removeFromCart(person_id, id) {
             this.getCartItemByPersonId(person_id).content =
                 this.getCartItemByPersonId(person_id).content.filter(
-                    (item) => item.id != id
+                    item => item.id != id,
                 )
         },
     },

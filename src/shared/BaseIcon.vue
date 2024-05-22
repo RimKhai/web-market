@@ -1,16 +1,16 @@
 <script setup>
-    import icons from '../../icons.js'
-    const props = defineProps({
-        type: {
-            type: String,
-            required: true,
-        },
-        fill: {
-            type: String,
-            required: false,
-            default: 'currentColor',
-        },
-    })
+import icons from '../../icons.js'
+const props = defineProps({
+    type: {
+        type: String,
+        required: true,
+    },
+    fill: {
+        type: String,
+        required: false,
+        default: 'currentColor',
+    },
+})
 </script>
 
 <template>
@@ -21,5 +21,6 @@
         view-box="0 0 20 20"
         xmlns="http://www.w3.org/2000/svg"
         v-html="icons[type]"
-        data-testid="icon" />
+        data-testid="icon"
+    />
 </template>

@@ -16,7 +16,12 @@ const $props = defineProps({
     },
 })
 
-const classes = computed(() => ['typography', `size_${$props.size}`, $props.bold ? 'bold' : '', `tag_${$props.tag_name}`])
+const classes = computed(() => [
+    'typography',
+    `size_${$props.size}`,
+    $props.bold ? 'bold' : '',
+    `tag_${$props.tag_name}`,
+])
 </script>
 
 <template>
