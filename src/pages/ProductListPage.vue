@@ -112,7 +112,7 @@ const SORT_OPTIONS = [
                 class="space-y-2"
                 :items_count="_count_of_items"
                 :items_per_page="ITEMS_PER_PAGE"
-                :current_age="_current_page"
+                :current_page="_current_page"
                 @changePage="changePage"
             >
                 <div
