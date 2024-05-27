@@ -25,7 +25,7 @@ onMounted(() => {
 <template>
     <RouterLink
         class="header__logo"
-        to="/"
+        to="/all/products"
     >
         <BaseIcon
             fill="none"

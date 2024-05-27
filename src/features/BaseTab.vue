@@ -1,11 +1,18 @@
 <script setup>
+import { computed } from 'vue'
 import { TabGroup, TabList, Tab, TabPanels } from '@headlessui/vue'
+
 defineProps({
     tabs: {
         type: Array,
         default: () => ['Пустой']
     }
 })
+const buttonClasses = computed(() => (selected) => [
+    'w-full rounded-lg py-2.5 text-sm leading-5',
+    'ring-[#b18fd7] ring-opacity-60 ring-offset-1 ring-offset-[#b18fd7] focus:outline-none focus:ring-2',
+    selected ? 'tab active shadow' : 'tab'
+])
 </script>
 
 <template>
@@ -18,13 +25,7 @@ defineProps({
                     v-slot="{ selected }"
                     as="template"
                 >
-                    <button
-                        :class="[
-                            'w-full rounded-lg py-2.5 text-sm leading-5',
-                            'ring-[#b18fd7] ring-opacity-60 ring-offset-1 ring-offset-[#b18fd7] focus:outline-none focus:ring-2',
-                            selected ? 'tab active shadow' : 'tab'
-                        ]"
-                    >
+                    <button :class="buttonClasses(selected)">
                         {{ tab }}
                     </button>
                 </Tab>

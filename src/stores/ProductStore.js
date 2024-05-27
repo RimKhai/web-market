@@ -12,14 +12,14 @@ export const useProductStore = defineStore('productStore', {
                 totalRating: 2,
                 imageName: 'b_apple_pro_max',
                 parameters: {
-                    Бренд: 'Apple',
-                    Модель: 'Pro Max',
+                    'Бренд': 'Apple',
+                    'Модель': 'Pro Max',
                     'Год Релиза': '2022',
-                    Цвет: 'Черный',
+                    'Цвет': 'Черный',
                     'Количество SIM': '2',
                     'Оперативная память': '32 Гб',
                     'Объем встроенной памяти': '128 Гб',
-                    Экран: '6.5"',
+                    'Экран': '6.5"',
                     'Разрешение Экрана': '1600x720',
                     'Частота обновления экрана': '60 Гц',
                     'Тип корпуса': 'Стекло',
@@ -38,14 +38,14 @@ export const useProductStore = defineStore('productStore', {
                 totalRating: 3,
                 imageName: 'samsung_a52',
                 parameters: {
-                    Бренд: 'Samsung',
-                    Модель: 'A52',
+                    'Бренд': 'Samsung',
+                    'Модель': 'A52',
                     'Год Релиза': '2022',
-                    Цвет: 'Черный',
+                    'Цвет': 'Черный',
                     'Количество SIM': '2',
                     'Оперативная память': '32 Гб',
                     'Объем встроенной памяти': '128 Гб',
-                    Экран: '6.5"',
+                    'Экран': '6.5"',
                     'Разрешение Экрана': '1600x720',
                     'Частота обновления экрана': '60 Гц',
                     'Тип корпуса': 'Стекло',
@@ -64,14 +64,14 @@ export const useProductStore = defineStore('productStore', {
                 totalRating: 4,
                 imageName: 'apple_pro_max',
                 parameters: {
-                    Бренд: 'Apple',
-                    Модель: 'Pro Max',
+                    'Бренд': 'Apple',
+                    'Модель': 'Pro Max',
                     'Год Релиза': '2022',
-                    Цвет: 'Черный',
+                    'Цвет': 'Черный',
                     'Количество SIM': '2',
                     'Оперативная память': '32 Гб',
                     'Объем встроенной памяти': '128 Гб',
-                    Экран: '6.5"',
+                    'Экран': '6.5"',
                     'Разрешение Экрана': '1600x720',
                     'Частота обновления экрана': '60 Гц',
                     'Тип корпуса': 'Стекло',
@@ -90,17 +90,17 @@ export const useProductStore = defineStore('productStore', {
                 totalRating: 1.8,
                 imageName: 'hyperx_ears',
                 parameters: {
-                    Бренд: 'Hyper-X',
-                    МОдель: 'Ears 1',
+                    'Бренд': 'Hyper-X',
+                    'Модель': 'Ears 1',
                     'Тип конструкции': 'Накладные',
-                    Цвет: 'Черный',
+                    'Цвет': 'Черный',
                     'Звуковая схема': '2.0',
                     'Минимальная частота воспроизведения': '10 Гц',
                     'Максимальная частота воспроизведения': '28000 Гц',
-                    Чувствительность: '100 дБ',
-                    Разъем: 'jack 3.5',
+                    'Чувствительность': '100 дБ',
+                    'Разъем': 'jack 3.5',
                     'Длина кабеля': '2 м',
-                    Вес: '490 г'
+                    'Вес': '490 г'
                 }
             },
             {
@@ -112,17 +112,17 @@ export const useProductStore = defineStore('productStore', {
                 totalRating: 3,
                 imageName: 'marshall',
                 parameters: {
-                    Бренд: 'Senheizer',
-                    Модель: 'Ears 1',
+                    'Бренд': 'Senheizer',
+                    'Модель': 'Ears 1',
                     'Тип конструкции': 'Накладные',
-                    Цвет: 'Черный',
+                    'Цвет': 'Черный',
                     'Звуковая схема': '2.0',
                     'Минимальная частота воспроизведения': '10 Гц',
                     'Максимальная частота воспроизведения': '28000 Гц',
-                    Чувствительность: '100 дБ',
-                    Разъем: 'jack 3.5',
+                    'Чувствительность': '100 дБ',
+                    'Разъем': 'jack 3.5',
                     'Длина кабеля': '2 м',
-                    Вес: '590 г'
+                    'Вес': '590 г'
                 }
             },
             {
@@ -134,17 +134,17 @@ export const useProductStore = defineStore('productStore', {
                 totalRating: 3,
                 imageName: 'razer_ears',
                 parameters: {
-                    Бренд: 'Hyper-X',
-                    МОдель: 'Ears 1',
+                    'Бренд': 'Hyper-X',
+                    'Модель': 'Ears 1',
                     'Тип конструкции': 'Накладные',
-                    Цвет: 'Черный',
+                    'Цвет': 'Черный',
                     'Звуковая схема': '2.0',
                     'Минимальная частота воспроизведения': '10 Гц',
                     'Максимальная частота воспроизведения': '28000 Гц',
-                    Чувствительность: '100 дБ',
-                    Разъем: 'jack 3.5',
+                    'Чувствительность': '100 дБ',
+                    'Разъем': 'jack 3.5',
                     'Длина кабеля': '2 м',
-                    Вес: '490 г'
+                    'Вес': '490 г'
                 }
             },
             {
@@ -156,10 +156,10 @@ export const useProductStore = defineStore('productStore', {
                 totalRating: 3,
                 imageName: 'chahol_black',
                 parameters: {
-                    Бренд: 'Chahol',
+                    'Бренд': 'Chahol',
                     'Модель телефона': 'Apple',
-                    Материал: 'Полипропилен',
-                    Цвет: 'Черный'
+                    'Материал': 'Полипропилен',
+                    'Цвет': 'Черный'
                 }
             },
             {
@@ -171,10 +171,10 @@ export const useProductStore = defineStore('productStore', {
                 totalRating: 3,
                 imageName: 'chahol_blue',
                 parameters: {
-                    Бренд: 'Chahol',
+                    'Бренд': 'Chahol',
                     'Модель телефона': 'Apple',
-                    Материал: 'Полипропилен',
-                    Цвет: 'Белый'
+                    'Материал': 'Полипропилен',
+                    'Цвет': 'Белый'
                 }
             },
             {
@@ -186,10 +186,10 @@ export const useProductStore = defineStore('productStore', {
                 totalRating: 3,
                 imageName: 'chahol_red',
                 parameters: {
-                    Бренд: 'Chahol',
+                    'Бренд': 'Chahol',
                     'Модель телефона': 'Apple',
-                    Материал: 'Полипропилен',
-                    Цвет: 'Красный'
+                    'Материал': 'Полипропилен',
+                    'Цвет': 'Красный'
                 }
             },
             {
@@ -201,8 +201,8 @@ export const useProductStore = defineStore('productStore', {
                 totalRating: 3,
                 imageName: 'powerbank_1',
                 parameters: {
-                    Бренд: 'PowerBank',
-                    Модель: 'Apply',
+                    'Бренд': 'PowerBank',
+                    'Модель': 'Apply',
                     'Тип аккумулятора': 'Li-pol',
                     'Ёмкость аккумулятора': '20000 mA*h',
                     'Маскимальный выходной ток': '2.4 A',
@@ -218,8 +218,8 @@ export const useProductStore = defineStore('productStore', {
                 totalRating: 3,
                 imageName: 'powerbank_2',
                 parameters: {
-                    Бренд: 'Magnet',
-                    Модель: 'Charge',
+                    'Бренд': 'Magnet',
+                    'Модель': 'Charge',
                     'Тип аккумулятора': 'Li-pol',
                     'Ёмкость аккумулятора': '22000 mA*h',
                     'Маскимальный выходной ток': '2.4 A',
@@ -235,8 +235,8 @@ export const useProductStore = defineStore('productStore', {
                 totalRating: 3,
                 imageName: 'powerbank_3',
                 parameters: {
-                    Бренд: 'Electric',
-                    Модель: 'Charge',
+                    'Бренд': 'Electric',
+                    'Модель': 'Charge',
                     'Тип аккумулятора': 'Li-pol',
                     'Ёмкость аккумулятора': '15000 mA*h',
                     'Маскимальный выходной ток': '2.4 A',
@@ -252,8 +252,8 @@ export const useProductStore = defineStore('productStore', {
                 totalRating: 3,
                 imageName: 'portable_1',
                 parameters: {
-                    Бренд: 'JBL',
-                    Модель: 'UltraBass',
+                    'Бренд': 'JBL',
+                    'Модель': 'UltraBass',
                     'Основной цвет': 'Черный',
                     Стереосистема: 'есть',
                     Мощность: '240 Вт',
@@ -270,8 +270,8 @@ export const useProductStore = defineStore('productStore', {
                 totalRating: 3,
                 imageName: 'portable_2',
                 parameters: {
-                    Бренд: 'JBL',
-                    Модель: 'Storm',
+                    'Бренд': 'JBL',
+                    'Модель': 'Storm',
                     'Основной цвет': 'Синий',
                     Стереосистема: 'есть',
                     Мощность: '240 Вт',
@@ -288,8 +288,8 @@ export const useProductStore = defineStore('productStore', {
                 totalRating: 3,
                 imageName: 'portable_3',
                 parameters: {
-                    Бренд: 'JBL',
-                    Модель: 'Clear Sound',
+                    'Бренд': 'JBL',
+                    'Модель': 'Clear Sound',
                     'Основной цвет': 'Белый',
                     Стереосистема: 'есть',
                     Мощность: '240 Вт',

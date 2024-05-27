@@ -10,7 +10,7 @@ defineProps({
     },
     index: {
         type: Number,
-        default: -1
+        default: 0
     },
     parentItem: {
         type: Object,

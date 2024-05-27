@@ -11,7 +11,7 @@ export const useCommentStore = defineStore('commentStore', {
                         id: 1,
                         person: {
                             id: 1,
-                            name: 'Настя'
+                            name: 'Борис'
                         },
                         advantage: 'Достоинства',
                         disadvantage: 'Недостатки',
@@ -107,7 +107,7 @@ export const useCommentStore = defineStore('commentStore', {
                         id: 2,
                         person: {
                             id: 1,
-                            name: 'Настя'
+                            name: 'Борис'
                         },
                         advantage: 'Достоинства',
                         disadvantage: 'Недостатки',
