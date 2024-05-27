@@ -4,7 +4,7 @@ require('@rushstack/eslint-patch/modern-module-resolution')
 module.exports = {
     root: true,
     extends: [
-        'plugin:vue/vue3-recommended',
+        'plugin:vue/vue3-strongly-recommended',
         'eslint:recommended',
         '@vue/eslint-config-prettier/skip-formatting'
     ],
@@ -97,5 +97,5 @@ module.exports = {
         'vue/multi-word-component-names': 'off',
         'vue/require-default-prop': 'off',
         'vue/no-v-html': 'off'
-    }
+    },
 }
