@@ -1,12 +1,16 @@
 <script setup>
 import Typography from '../shared/Typography.vue'
 
-const $props = defineProps(['parameters'])
+defineProps(['parameters'])
 </script>
 
 <template>
     <div class="param__container">
-        <div v-for="key in Object.keys(parameters)" class="param" :key="key">
+        <div
+            v-for="key in Object.keys(parameters)"
+            :key="key"
+            class="param"
+        >
             <Typography>{{ key }}</Typography>
             <Typography>{{ parameters[key] }}</Typography>
         </div>

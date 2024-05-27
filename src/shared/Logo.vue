@@ -32,7 +32,7 @@ onMounted(() => {
             type="globe"
         />
         <Typography
-            tagName="h4"
+            tag-name="h4"
             bold
             >{{ _screen_width > 768 ? 'WEB MARKET' : 'WB' }}</Typography
         >

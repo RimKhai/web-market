@@ -17,7 +17,7 @@ const onPlus = () => {
     emits('onPlus', count.value)
 }
 
-const onChange = event => {
+const onChange = (event) => {
     count.value = event.target.value
     emits('onChange', event)
 }
@@ -33,9 +33,9 @@ const onChange = event => {
         </button>
         <input
             :value="count"
-            @change="onChange"
             class="h-6 w-6 border-b-2 border-gray-500 outline-none text-center"
             data-testid="input"
+            @change="onChange"
         />
         <button @click="onPlus">
             <BaseIcon

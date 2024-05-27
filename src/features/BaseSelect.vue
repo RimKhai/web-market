@@ -1,34 +1,29 @@
 <script setup>
 import { ref } from 'vue'
-import {
-    Listbox,
-    ListboxLabel,
-    ListboxButton,
-    ListboxOptions,
-    ListboxOption,
-} from '@headlessui/vue'
+import { Listbox, ListboxButton, ListboxOptions, ListboxOption } from '@headlessui/vue'
 
 const props = defineProps({
     data: {
         type: Array,
-        default: [
+        default: () => [
             {
-                title: 'Option 1',
+                title: 'Option 1'
             },
             {
-                title: 'Option 2',
-            },
-        ],
+                title: 'Option 2'
+            }
+        ]
     },
     defaultTitle: {
         type: String,
-        default: 'Select an option',
+        default: 'Select an option'
     },
     selectedDataIndex: {
         type: Number,
-        default: 0,
-    },
+        default: 0
+    }
 })
+defineEmits(['onClick'])
 
 const data = ref(props.data)
 const selectedData = ref(data.value[props.selectedDataIndex])
@@ -42,9 +37,7 @@ const selectedData = ref(data.value[props.selectedDataIndex])
                     class="relative w-full cursor-default rounded-lg bg-violet-700 text-black py-2 px-3 shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm"
                 >
                     {{
-                        selectedData?.title == 'undefined'
-                            ? props.defaultTitle
-                            : selectedData.title
+                        selectedData?.title == 'undefined' ? props.defaultTitle : selectedData.title
                     }}
                 </ListboxButton>
 
@@ -52,25 +45,23 @@ const selectedData = ref(data.value[props.selectedDataIndex])
                     class="absolute text-center z-20 mt-1 max-h-60 w-full overflow-auto rounded-md bg-violet-500 py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm"
                 >
                     <ListboxOption
-                        v-slot="{ active, selected }"
                         v-for="item in data"
+                        v-slot="{ active, selected }"
                         :key="item.title"
                         :value="item"
-                        @click="$emit('onClick', selectedData)"
                         as="template"
+                        @click="$emit('onClick', selectedData)"
                     >
                         <li
                             :class="[
-                                active
-                                    ? 'bg-amber-100 text-amber-900'
-                                    : 'text-gray-900',
-                                'relative cursor-default select-none py-2 px-3',
+                                active ? 'bg-amber-100 text-amber-900' : 'text-gray-900',
+                                'relative cursor-default select-none py-2 px-3'
                             ]"
                         >
                             <span
                                 :class="[
                                     selected ? 'font-medium' : 'font-normal',
-                                    'block truncate',
+                                    'block truncate'
                                 ]"
                                 >{{ item.title }}</span
                             >
@@ -81,7 +72,7 @@ const selectedData = ref(data.value[props.selectedDataIndex])
                                 <div
                                     class="h-5 w-5"
                                     aria-hidden="true"
-                                ></div>
+                                />
                             </span>
                         </li>
                     </ListboxOption>

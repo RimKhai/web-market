@@ -8,56 +8,66 @@ import RegistrationForm from './widgets/authorization/RegistrationForm.vue'
 import WelcomePage from './pages/WelcomePage.vue'
 import ProfilePage from './pages/ProfilePage.vue'
 import ProductListPage from './pages/ProductListPage.vue'
-import Main from './widgets/Main.vue'
+import TheMain from './widgets/TheMain.vue'
 
 const routes = [
     {
+        name: 'AuthOutlet',
         path: '/authorization',
         component: AuthorizationPage,
         children: [
             {
+                name: 'Auth',
                 path: 'auth',
-                component: AuthorizationForm,
+                component: AuthorizationForm
             },
             {
+                name: 'Reg',
                 path: 'reg',
-                component: RegistrationForm,
-            },
-        ],
+                component: RegistrationForm
+            }
+        ]
     },
     {
+        name: 'MainOutlet',
         path: '/',
-        component: Main,
+        component: TheMain,
         children: [
             {
+                name: 'WelcomePage',
                 path: '/welcome/:id',
-                component: WelcomePage,
+                component: WelcomePage
             },
             {
+                name: 'ProfilePage',
                 path: '/profile',
-                component: ProfilePage,
+                component: ProfilePage
             },
             {
+                name: 'CartPage',
                 path: '/',
-                redirect: '/all/products',
+                redirect: '/all/products'
             },
             {
+                name: 'ProductListPage',
                 path: '/:category+/products',
-                component: ProductListPage,
+                component: ProductListPage
             },
             {
+                name: 'ProductPage',
                 path: '/:category/product/:id',
-                component: ProductPage,
+                component: ProductPage
             },
             {
+                name: 'CartPage',
                 path: '/cart/:id',
-                component: CartPage,
-            },
-        ],
-    },
+                component: CartPage
+            }
+        ]
+    }
 ]
 
 export const router = createRouter({
     history: createWebHistory(),
-    routes,
+    routes
 })

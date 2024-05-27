@@ -1,8 +1,10 @@
 <script setup>
-import { ref } from 'vue'
-
 const emits = defineEmits(['onClick'])
-const props = defineProps(['checked'])
+const props = defineProps({
+    checked: {
+        type: Boolean
+    }
+})
 
 const clickHandler = () => {
     emits('onClick', props.checked)
@@ -12,9 +14,7 @@ const clickHandler = () => {
 <template>
     <div
         data-testid="checkbox"
-        :class="`base-checkbox cursor-pointer ${
-            props.checked ? 'checked' : ''
-        }`"
+        :class="`base-checkbox cursor-pointer ${props.checked ? 'checked' : ''}`"
         @click="clickHandler()"
     >
         <svg
@@ -23,9 +23,7 @@ const clickHandler = () => {
             data-testid="checkbox-check"
             stroke-width="2"
             stroke="currentColor"
-            :class="`${
-                props.checked ? 'opacity-100' : 'opacity-0'
-            } w-6 h-6 duration-500`"
+            :class="`${props.checked ? 'opacity-100' : 'opacity-0'} w-6 h-6 duration-500`"
         >
             <path
                 stroke-linecap="round"

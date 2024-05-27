@@ -3,11 +3,11 @@ import { RouterLink } from 'vue-router'
 import BaseIcon from '../shared/BaseIcon.vue'
 import Typography from '../shared/Typography.vue'
 
-const props = defineProps({
+defineProps({
     data: {
         type: Array,
-        required: true,
-    },
+        required: true
+    }
 })
 </script>
 
@@ -16,8 +16,8 @@ const props = defineProps({
         <ul class="header-navigation__list">
             <li
                 v-for="item in data"
-                class="header-navigation__item"
                 :key="item.label"
+                class="header-navigation__item"
             >
                 <RouterLink
                     class="navigation__link"
@@ -28,7 +28,7 @@ const props = defineProps({
                         fill="none"
                     />
                     <Typography
-                        tagName="span"
+                        tag-name="span"
                         class="navigaion__typography"
                         size="s"
                         >{{ item.label }}</Typography

@@ -10,7 +10,7 @@ const props = defineProps({
     id: Number,
     name: String,
     price: Number,
-    imageName: String,
+    imageName: String
 })
 
 const cartStore = useCartStore()
@@ -19,11 +19,11 @@ const personId = computed(() => personStore.loginedPersonId)
 const imgSrc = ref()
 const productLink = computed(() => `/all/product/${props.id}`)
 
-const increaseQuantity = id => {
+const increaseQuantity = (id) => {
     cartStore.increaseQuantity(personId.value, id)
 }
 
-const decreaseQuantity = id => {
+const decreaseQuantity = (id) => {
     cartStore.decreaseQuantity(personId.value, id)
     removeCartItemOnZero(id)
 }
@@ -32,13 +32,13 @@ const changeQuantity = (event, id) => {
     removeCartItemOnZero(id)
 }
 
-const removeCartItemOnZero = id => {
+const removeCartItemOnZero = (id) => {
     if (cartStore.getCartItemById(personId.value, id).quantity <= 0) {
         cartStore.removeFromCart(personId.value, id)
     }
 }
 
-import(`../assets/${props.imageName}.png`).then(imageImports => {
+import(`../assets/${props.imageName}.png`).then((imageImports) => {
     imgSrc.value = imageImports.default
 })
 </script>
@@ -46,8 +46,8 @@ import(`../assets/${props.imageName}.png`).then(imageImports => {
 <template>
     <div class="cart-product-card">
         <BaseCheckbox
-            @onClick="cartStore.toggleCheck(personId, props.id)"
             :checked="cartStore.isChecked(personId, props.id)"
+            @on-click="cartStore.toggleCheck(personId, props.id)"
         />
         <RouterLink :to="productLink">
             <img
@@ -57,17 +57,17 @@ import(`../assets/${props.imageName}.png`).then(imageImports => {
             />
         </RouterLink>
         <RouterLink :to="productLink">
-            <Typography tagName="h4">{{ name }}</Typography>
+            <Typography tag-name="h4">{{ name }}</Typography>
         </RouterLink>
         <div class="cart-product-card__actions">
             <Counter
-                @onMinus="decreaseQuantity(props.id)"
-                @onPlus="increaseQuantity(props.id)"
-                @onChange="event => changeQuantity(event, props.id)"
+                @on-minus="decreaseQuantity(props.id)"
+                @on-plus="increaseQuantity(props.id)"
+                @on-change="(event) => changeQuantity(event, props.id)"
             />
             <Typography
-                @click="cartStore.removeFromCart(personId, props.id)"
                 class="remover cursor-pointer"
+                @click="cartStore.removeFromCart(personId, props.id)"
             >
                 удалить
             </Typography>

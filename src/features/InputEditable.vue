@@ -4,9 +4,12 @@ import { ref, defineEmits } from 'vue'
 import BaseIcon from '../shared/BaseIcon.vue'
 import Typography from '../shared/Typography.vue'
 
-const props = defineProps(['text'])
-
-const emits = defineEmits(['onChange'])
+defineProps({
+    text: {
+        type: String
+    }
+})
+defineEmits(['onChange'])
 
 const isEditable = ref(false)
 </script>
@@ -14,9 +17,9 @@ const isEditable = ref(false)
 <template>
     <div v-if="isEditable">
         <input
+            :value="text"
             @blur="isEditable = false"
             @keyup.enter="isEditable = false"
-            :value="text"
             @change="onChange"
         />
     </div>

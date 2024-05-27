@@ -23,7 +23,7 @@ const register = () => {
         name.value,
         secondName.value,
         email.value,
-        password.value,
+        password.value
     )
 
     if (regSuccessful.value === true) {
@@ -34,32 +34,32 @@ const register = () => {
 
 <template>
     <form
-        @submit.prevent="console.log('submit')"
         class="authorization__form"
+        @submit.prevent="console.log('submit')"
         @keydown.enter="register"
     >
         <div class="registration__fullname">
             <input
-                class="base-input"
                 v-model="name"
+                class="base-input"
                 placeholder="Имя"
                 type="text"
             />
             <input
-                class="base-input"
                 v-model="secondName"
+                class="base-input"
                 placeholder="Фамилия"
             />
         </div>
         <input
-            class="base-input"
             v-model="email"
+            class="base-input"
             placeholder="E-mail"
             type="email"
         />
         <input
-            class="base-input"
             v-model="password"
+            class="base-input"
             placeholder="Пароль"
             type="password"
         />

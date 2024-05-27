@@ -1,28 +1,31 @@
 <script setup>
 import { ref, watchEffect } from 'vue'
-
-import BaseIcon from '../shared/BaseIcon.vue'
 import ImageCard from '../widgets/ImageCard.vue'
 
-const props = defineProps(['images'])
+const props = defineProps({
+    images: {
+        type: Array,
+        default: () => []
+    }
+})
 
 const mImage = ref(props?.images ?? [])
 const mFile = ref()
 
 const emits = defineEmits(['getImages'])
 
-const onChange = event => {
+const onChange = (event) => {
     mFile.value = event.target.files || event.dataTransfer.files
 
     if (!mFile.value.length) return
 
-    Object.keys(mFile.value).map(item => {
+    Object.keys(mFile.value).map((item) => {
         mImage.value = [...mImage.value, URL.createObjectURL(mFile.value[item])]
     })
 }
 
-const removeImage = image => {
-    mImage.value = mImage.value.filter(item => item !== image)
+const removeImage = (image) => {
+    mImage.value = mImage.value.filter((item) => item !== image)
     console.log(image)
 }
 
@@ -38,18 +41,18 @@ watchEffect(() => {
                 v-for="image in mImage"
                 :key="image"
                 :image="image"
-                @onRemove="removeImage(image)"
+                @on-remove="removeImage(image)"
             />
         </div>
         <div class="file-upload__area">
             <input
+                id=""
                 class="file-upload__input"
                 type="file"
-                @input="onChange"
                 :files="files"
                 multiple
                 name=""
-                id=""
+                @input="onChange"
             />
             <span class="file-upload__button">Выберете файл</span>
             {{ files }}

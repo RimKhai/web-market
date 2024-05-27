@@ -17,19 +17,19 @@ const secondName = ref(loginedPerson.value.secondName)
 const email = ref(loginedPerson.value.email)
 const password = ref(loginedPerson.value.password)
 
-const changeName = event => {
+const changeName = (event) => {
     name.value = event.target.value
     personStore.changeName(loginedPerson.value.id, event.target.value)
 }
-const changeSecondName = event => {
+const changeSecondName = (event) => {
     secondName.value = event.target.value
     personStore.changeSecondName(loginedPerson.value.id, event.target.value)
 }
-const changeEmail = event => {
+const changeEmail = (event) => {
     email.value = event.target.value
     personStore.changeEmail(loginedPerson.value.id, event.target.value)
 }
-const changePassword = event => {
+const changePassword = (event) => {
     password.value = event.target.value
     personStore.changePassword(loginedPerson.value.id, event.target.value)
 }
@@ -43,22 +43,22 @@ const clickHandler = () => {
 <template>
     <div class="profile-page">
         <div>
-            <div class="h-48 w-32 bg-black rounded-2xl"></div>
+            <div class="h-48 w-32 bg-black rounded-2xl" />
             <BaseButton
-                @click="clickHandler"
                 class="profile-page__logout-button"
+                @click="clickHandler"
             >
                 Выйти
             </BaseButton>
         </div>
         <section>
-            <Typography tagName="h3">Информация профиля</Typography>
+            <Typography tag-name="h3">Информация профиля</Typography>
 
             <div class="profile-page__form">
                 <Typography class="input-label">Имя:</Typography>
                 <InputEditable
                     :text="name"
-                    :onChange="event => changeName(event)"
+                    :on-change="(event) => changeName(event)"
                 />
             </div>
 
@@ -66,7 +66,7 @@ const clickHandler = () => {
                 <Typography class="input-label">Фамилия:</Typography>
                 <InputEditable
                     :text="secondName"
-                    :onChange="event => changeSecondName(event)"
+                    :on-change="(event) => changeSecondName(event)"
                 />
             </div>
 
@@ -74,7 +74,7 @@ const clickHandler = () => {
                 <Typography class="input-label">E-mail:</Typography>
                 <InputEditable
                     :text="email"
-                    :onChange="event => changeEmail(event)"
+                    :on-change="(event) => changeEmail(event)"
                 />
             </div>
 
@@ -82,7 +82,7 @@ const clickHandler = () => {
                 <Typography class="input-label">Пароль:</Typography>
                 <InputEditable
                     :text="password"
-                    :onChange="event => changePassword(event)"
+                    :on-change="(event) => changePassword(event)"
                 />
             </div>
         </section>

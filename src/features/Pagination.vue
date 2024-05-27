@@ -2,34 +2,29 @@
 import { computed } from 'vue'
 import BaseButton from '../shared/BaseButton.vue'
 
-const $emits = defineEmits(['changePage'])
-
 const $props = defineProps({
     itemsCount: {
         type: Number,
-        required: true,
+        required: true
     },
     itemsPerPage: {
         type: Number,
-        required: true,
+        required: true
     },
     currentPage: {
         type: Number,
-        required: true,
-    },
+        required: true
+    }
 })
+defineEmits(['changePage'])
 
-const pageCount = computed(() =>
-    Math.ceil($props.itemsCount / $props.itemsPerPage),
-)
-const pages = computed(() =>
-    Array.from({ length: pageCount.value }, (_, i) => i + 1),
-)
+const pageCount = computed(() => Math.ceil($props.itemsCount / $props.itemsPerPage))
+const pages = computed(() => Array.from({ length: pageCount.value }, (_, i) => i + 1))
 </script>
 
 <template>
     <div>
-        <slot></slot>
+        <slot />
         <div
             v-show="itemsCount > itemsPerPage"
             class="flex space-x-1"
@@ -56,10 +51,7 @@ const pages = computed(() =>
                 {{ currentPage + 1 }}
             </BaseButton>
             <BaseButton
-                v-if="
-                    currentPage != pages.length &&
-                    pages.length != currentPage + 1
-                "
+                v-if="currentPage != pages.length && pages.length != currentPage + 1"
                 @click="$emit('changePage', pages.length)"
             >
                 {{ pages.length }}

@@ -1,7 +1,7 @@
 <script setup>
 import BaseIcon from '../shared/BaseIcon.vue'
 
-const $emits = defineEmits(['removeImage'])
+const $emits = defineEmits(['onRemove'])
 const $props = defineProps(['image', 'readonly'])
 
 const onRemove = () => {
@@ -11,8 +11,17 @@ const onRemove = () => {
 
 <template>
     <div class="image-card">
-        <img class="image-card__image" :src="image" alt="" />
-        <BaseIcon v-if="!readonly" class="file-upload__x-mark" type="x-mark" @click="onRemove" />
+        <img
+            class="image-card__image"
+            :src="image"
+            alt=""
+        />
+        <BaseIcon
+            v-if="!readonly"
+            class="file-upload__x-mark"
+            type="x-mark"
+            @click="onRemove"
+        />
     </div>
 </template>
 

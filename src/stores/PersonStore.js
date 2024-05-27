@@ -10,32 +10,32 @@ export const usePersonStore = defineStore('personStore', {
                 secondName: 'Шест',
                 email: 'boris69@gmail.com',
                 password: 12345678,
-                logined: true,
-            },
+                logined: true
+            }
         ],
 
         // Индекс текущего авторизованного пользователя
         loginedPersonIndex: 0,
         // ID текущего авторизованного пользователя
-        loginedPersonId: 1,
+        loginedPersonId: 1
     }),
 
     getters: {
         // Получение пользователя по ID
-        getPersonById: state => personId =>
-            state.person.find(item => item.id === personId)?? -1,
+        getPersonById: (state) => (personId) =>
+            state.person.find((item) => item.id === personId) ?? -1,
 
         // Получение индекса пользователя по email
-        getPersonIndexByEmail: state => email =>
-            state.person.findIndex(item => item.email === email)?? -1,
+        getPersonIndexByEmail: (state) => (email) =>
+            state.person.findIndex((item) => item.email === email) ?? -1,
 
         // Получение текущего авторизованного пользователя
-        getCurrentPerson: state => {
+        getCurrentPerson: (state) => {
             if (state.loginedPersonIndex === -1) {
                 return -1
             }
             return state.person[state.loginedPersonIndex]
-        },
+        }
     },
 
     actions: {
@@ -53,15 +53,15 @@ export const usePersonStore = defineStore('personStore', {
 
             // Добавление пользователя в базу (в данном случае, на клиенте)
             this.person = [
-              ...this.person,
+                ...this.person,
                 {
                     id: id,
                     name: name,
                     secondName: secondName,
                     email: email,
                     password: password,
-                    logined: true,
-                },
+                    logined: true
+                }
             ]
 
             // Обновление индекса и ID текущего авторизованного пользователя
@@ -70,11 +70,11 @@ export const usePersonStore = defineStore('personStore', {
 
             // Создание новой корзины для нового пользователя
             useCartStore().cart = [
-              ...useCartStore().cart,
+                ...useCartStore().cart,
                 {
                     personId: id,
-                    content: [],
-                },
+                    content: []
+                }
             ]
 
             // Возвращает true в случае успешной регистрации пользователя
@@ -116,10 +116,7 @@ export const usePersonStore = defineStore('personStore', {
 
         // Проверка пароля при авторизации пользователя
         checkPassword(email, password) {
-            if (
-                this.person[this.getPersonIndexByEmail(email)]?.password ===
-                password
-            ) {
+            if (this.person[this.getPersonIndexByEmail(email)]?.password === password) {
                 return true
             }
             return false
@@ -129,14 +126,13 @@ export const usePersonStore = defineStore('personStore', {
         login(email, password) {
             if (this.checkPassword(email, password)) {
                 this.loginedPersonIndex = this.getPersonIndexByEmail(email)
-                this.loginedPersonId =
-                    this.person[this.loginedPersonIndex].id
+                this.loginedPersonId = this.person[this.loginedPersonIndex].id
                 this.getCurrentPerson.logined = true
 
                 return true
             }
 
             return false
-        },
-    },
+        }
+    }
 })

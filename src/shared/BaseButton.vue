@@ -5,20 +5,20 @@ import Typography from './Typography.vue'
 const $props = defineProps({
     color: {
         type: String,
-        default: 'primary',
+        default: 'primary'
     },
     decoration: {
         type: String,
-        default: 'default',
+        default: 'default'
     },
     size: {
         type: String,
-        default: 'm',
+        default: 'm'
     },
     disabled: {
         type: Boolean,
-        default: false,
-    },
+        default: false
+    }
 })
 
 const classes = computed(() => [
@@ -26,7 +26,7 @@ const classes = computed(() => [
     `size_${$props.size}`,
     $props.color,
     $props.decoration,
-    $props.disabled ? 'disabled' : '',
+    $props.disabled ? 'disabled' : ''
 ])
 </script>
 
@@ -37,9 +37,9 @@ const classes = computed(() => [
     >
         <Typography
             class="button__typography"
-            tagName="span"
+            tag-name="span"
         >
-            <slot></slot>
+            <slot />
         </Typography>
     </button>
 </template>

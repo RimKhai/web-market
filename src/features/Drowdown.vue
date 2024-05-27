@@ -21,13 +21,13 @@ const closeDisclosure = () => {
             class="dropdown__button"
             @mouseenter="openDisclosure"
         >
-            <slot name="button"></slot>
+            <slot name="button" />
         </div>
         <div
-            class="dropdown__panel"
             v-show="isOpen"
+            class="dropdown__panel"
         >
-            <slot name="panel"></slot>
+            <slot name="panel" />
         </div>
     </div>
 </template>

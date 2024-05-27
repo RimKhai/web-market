@@ -1,14 +1,14 @@
 <script setup>
 import BaseIcon from '../shared/BaseIcon.vue'
 
-const props = defineProps({
+defineProps({
     value: Number,
-    totalRating: Number,
+    totalRating: Number
 })
 
 const emit = defineEmits(['updateRating'])
 
-const setRating = star => {
+const setRating = (star) => {
     emit('updateRating', star)
 }
 </script>

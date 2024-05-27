@@ -1,16 +1,16 @@
 <script setup>
-import { computed, onMounted, ref, watchEffect } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { useCommentStore } from '../stores/CommentStore'
 import { usePersonStore } from '../stores/PersonStore'
-import { useRoute } from 'vue-router'
 import Rating from '../features/Rating.vue'
 import BaseButton from '../shared/BaseButton.vue'
 import Typography from '../shared/Typography.vue'
 import FileUpload from '../features/FileUpload.vue'
 
-const props = defineProps(['productId'])
+const props = defineProps({
+    productId: Number
+})
 const emits = defineEmits(['onSubmit'])
-const route = useRoute()
 
 const commentStore = useCommentStore()
 const personStore = usePersonStore()
@@ -38,7 +38,7 @@ const onSubmit = () => {
         disadvantage.value,
         comment.value,
         rating.value,
-        images.value,
+        images.value
     )
 
     emits('onSubmit', 'ubmit')
@@ -47,40 +47,40 @@ const onSubmit = () => {
 
 <template>
     <form
-        @submit.prevent="onSubmit"
         class="comment-form"
+        @submit.prevent="onSubmit"
     >
         <div class="comment-form__head">
-            <div class="w-12 h-12 bg-black rounded-full"></div>
+            <div class="w-12 h-12 bg-black rounded-full" />
             <Typography>{{ loginedPerson?.name }}</Typography>
             <Rating
                 :value="rating"
-                :totalRating="TOTAL_RATING"
-                @updateRating="rating = $event"
+                :total-rating="TOTAL_RATING"
+                @update-rating="rating = $event"
             />
         </div>
         <main class="comment-form__fields">
             <textarea
-                class="base-textarea resize-none"
-                :rows="3"
                 v-model="advantage"
+                class="base-textarea resize-none"
+                :rows="3"
                 :placeholder="'Достоинства'"
-            ></textarea>
+            />
             <textarea
-                class="base-textarea resize-none"
-                :rows="3"
                 v-model="disadvantage"
-                :placeholder="'Недостатки'"
-            ></textarea>
-            <textarea
                 class="base-textarea resize-none"
                 :rows="3"
+                :placeholder="'Недостатки'"
+            />
+            <textarea
                 v-model="comment"
+                class="base-textarea resize-none"
+                :rows="3"
                 :placeholder="'Комментарий'"
-            ></textarea>
+            />
             <FileUpload
                 :images="images"
-                @getImages="images = $event"
+                @get-images="images = $event"
             />
         </main>
         <Typography

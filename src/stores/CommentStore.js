@@ -11,40 +11,40 @@ export const useCommentStore = defineStore('commentStore', {
                         id: 1,
                         person: {
                             id: 1,
-                            name: 'Настя',
+                            name: 'Настя'
                         },
                         advantage: 'Достоинства',
                         disadvantage: 'Недостатки',
                         comment: 'Комментарий',
                         rating: 2,
-                        date: Date.now(),
+                        date: Date.now()
                     },
                     {
                         id: 2,
                         person: {
                             id: 3,
-                            name: 'Саня',
+                            name: 'Саня'
                         },
                         advantage: 'Достоинства',
                         disadvantage: 'Недостатки',
                         comment: 'Комментарий',
                         rating: 4,
-                        date: Date.now(),
+                        date: Date.now()
                     },
                     {
                         id: 3,
                         person: {
                             id: 2,
-                            name: 'Рим',
+                            name: 'Рим'
                         },
                         advantage: 'Достоинства',
                         disadvantage: 'Недостатки',
                         comment: 'Комментарий',
                         rating: 5,
-                        date: Date.now(),
-                    },
+                        date: Date.now()
+                    }
                 ],
-                personIds: new Set([1, 2, 3]),
+                personIds: new Set([1, 2, 3])
             },
             {
                 productId: 2,
@@ -53,40 +53,40 @@ export const useCommentStore = defineStore('commentStore', {
                         id: 1,
                         person: {
                             id: 4,
-                            name: 'Женя',
+                            name: 'Женя'
                         },
                         advantage: 'Достоинства',
                         disadvantage: 'Недостатки',
                         comment: 'Комментарий',
                         rating: 2,
-                        date: Date.now(),
+                        date: Date.now()
                     },
                     {
                         id: 2,
                         person: {
                             id: 5,
-                            name: 'Никита',
+                            name: 'Никита'
                         },
                         advantage: 'Достоинства',
                         disadvantage: 'Недостатки',
                         comment: 'Комментарий',
                         rating: 4,
-                        date: Date.now(),
+                        date: Date.now()
                     },
                     {
                         id: 3,
                         person: {
                             id: 6,
-                            name: 'Илья',
+                            name: 'Илья'
                         },
                         advantage: 'Достоинства',
                         disadvantage: 'Недостатки',
                         comment: 'Комментарий',
                         rating: 5,
-                        date: Date.now(),
-                    },
+                        date: Date.now()
+                    }
                 ],
-                personIds: new Set([4, 5, 6]),
+                personIds: new Set([4, 5, 6])
             },
             {
                 productId: 3,
@@ -95,40 +95,40 @@ export const useCommentStore = defineStore('commentStore', {
                         id: 1,
                         person: {
                             id: 7,
-                            name: 'Лиза',
+                            name: 'Лиза'
                         },
                         advantage: 'Достоинства',
                         disadvantage: 'Недостатки',
                         comment: 'Комментарий',
                         rating: 2,
-                        date: Date.now(),
+                        date: Date.now()
                     },
                     {
                         id: 2,
                         person: {
                             id: 1,
-                            name: 'Настя',
+                            name: 'Настя'
                         },
                         advantage: 'Достоинства',
                         disadvantage: 'Недостатки',
                         comment: 'Комментарий',
                         rating: 4,
-                        date: Date.now(),
+                        date: Date.now()
                     },
                     {
                         id: 3,
                         person: {
                             id: 8,
-                            name: 'Ваня',
+                            name: 'Ваня'
                         },
                         advantage: 'Достоинства',
                         disadvantage: 'Недостатки',
                         comment: 'Комментарий',
                         rating: 5,
-                        date: Date.now(),
-                    },
+                        date: Date.now()
+                    }
                 ],
-                personIds: new Set([7, 1, 8]),
+                personIds: new Set([7, 1, 8])
             },
             {
                 productId: 4,
@@ -137,61 +137,58 @@ export const useCommentStore = defineStore('commentStore', {
                         id: 1,
                         person: {
                             id: 7,
-                            name: 'Лиза',
+                            name: 'Лиза'
                         },
                         advantage: 'Достоинства',
                         disadvantage: 'Недостатки',
                         comment: 'Комментарий',
                         rating: 2,
-                        date: Date.now(),
+                        date: Date.now()
                     },
                     {
                         id: 2,
                         person: {
                             id: 1,
-                            name: 'Настя',
+                            name: 'Настя'
                         },
                         advantage: 'Достоинства',
                         disadvantage: 'Недостатки',
                         comment: 'Комментарий',
                         rating: 4,
-                        date: Date.now(),
+                        date: Date.now()
                     },
                     {
                         id: 3,
                         person: {
                             id: 8,
-                            name: 'Ваня',
+                            name: 'Ваня'
                         },
                         advantage: 'Достоинства',
                         disadvantage: 'Недостатки',
                         comment: 'Комментарий',
                         rating: 5,
-                        date: Date.now(),
-                    },
+                        date: Date.now()
+                    }
                 ],
-                personIds: new Set([1, 7, 8]),
-            },
-        ],
+                personIds: new Set([1, 7, 8])
+            }
+        ]
     }),
 
     getters: {
         getCommentByProductId: (state) => {
-            return (productId) =>
-                state.comments.find((item) => item.productId == productId)?? -1
+            return (productId) => state.comments.find((item) => item.productId == productId) ?? -1
         },
         getCommentById() {
             return (productId, id) =>
-                this.getCommentByProductId(productId).content?.find(
-                    (item) => item.id == id
-                )?? -1
+                this.getCommentByProductId(productId).content?.find((item) => item.id == id) ?? -1
         },
         getCommentByPersonId() {
             return (productId, personId) =>
                 this.getCommentByProductId(productId).content?.find(
                     (item) => item.person.id == personId
-                )?? -1
-        },
+                ) ?? -1
+        }
     },
 
     actions: {
@@ -212,100 +209,74 @@ export const useCommentStore = defineStore('commentStore', {
             this.getCommentById(productId, id)['rating'] = rating
         },
 
-        addComment(
-            productId,
-            person,
-            advantage,
-            disadvantage,
-            comment,
-            rating,
-            images
-        ) { 
+        addComment(productId, person, advantage, disadvantage, comment, rating, images) {
             console.log(advantage, disadvantage, comment)
-            if (
-                advantage.trim() === '' &&
-                disadvantage.trim() === '' &&
-                comment.trim() === ''
-            ) {
+            if (advantage.trim() === '' && disadvantage.trim() === '' && comment.trim() === '') {
                 return false
             }
             if (this.getCommentByProductId(productId) == -1) {
                 this.comments = [
-                   ...this.comments,
+                    ...this.comments,
                     {
                         productId: Number(productId),
                         content: [],
-                        personIds: new Set(),
-                    },
+                        personIds: new Set()
+                    }
                 ]
             }
 
-            if (
-                this.getCommentByProductId(productId).personIds.has(person.id)
-            ) {
-                this.getCommentByPersonId(productId, person.id).advantage =
-                    advantage
-                this.getCommentByPersonId(productId, person.id).disadvantage =
-                    disadvantage
-                this.getCommentByPersonId(productId, person.id).comment =
-                    comment
+            if (this.getCommentByProductId(productId).personIds.has(person.id)) {
+                this.getCommentByPersonId(productId, person.id).advantage = advantage
+                this.getCommentByPersonId(productId, person.id).disadvantage = disadvantage
+                this.getCommentByPersonId(productId, person.id).comment = comment
                 this.getCommentByPersonId(productId, person.id).rating = rating
                 this.getCommentByPersonId(productId, person.id).images = images
             } else {
                 this.getCommentByProductId(productId).content = [
-                   ...this.getCommentByProductId(productId).content,
+                    ...this.getCommentByProductId(productId).content,
                     {
                         id:
-                            this.getCommentByProductId(productId).content
-                               .length == 0
-                               ? 1
+                            this.getCommentByProductId(productId).content.length == 0
+                                ? 1
                                 : Number(
-                                      this.getCommentByProductId(productId)
-                                         .content[
-                                          this.getCommentByProductId(productId)
-                                             .content.length - 1
+                                      this.getCommentByProductId(productId).content[
+                                          this.getCommentByProductId(productId).content.length - 1
                                       ]['id']
                                   ) + 1,
                         person: {
                             id: person.id,
-                            name: person.name,
+                            name: person.name
                         },
                         advantage: advantage,
                         disadvantage: disadvantage,
                         comment: comment,
                         rating: rating,
                         images: images,
-                        date: Date.now(),
-                    },
+                        date: Date.now()
+                    }
                 ]
             }
             this.getCommentByProductId(productId).personIds.add(person.id)
             useProductStore().getProductById(productId).totalRating =
-                this.getCommentByProductId(productId).content.reduce(
-                    (accum, item) => {
-                        return accum + Number(item.rating)
-                    },
-                    0
-                ) /
+                this.getCommentByProductId(productId).content.reduce((accum, item) => {
+                    return accum + Number(item.rating)
+                }, 0) /
                 (this.getCommentByProductId(productId).content.length == 0
-                   ? 1
+                    ? 1
                     : this.getCommentByProductId(productId).content.length)
 
             return false
         },
 
         removeComment(productId, id) {
-            this.getCommentByProductId(productId).content =
-                this.getCommentByProductId(productId).content.filter(
-                    (item) => {
-                        if (item.id === id) {
-                            this.getCommentByProductId(
-                                productId
-                            ).personIds.delete(item.person.id)
-                        }
-                        return item.id!== id
-                    }
-                )
-        },
-    },
+            this.getCommentByProductId(productId).content = this.getCommentByProductId(
+                productId
+            ).content.filter((item) => {
+                if (item.id === id) {
+                    this.getCommentByProductId(productId).personIds.delete(item.person.id)
+                }
+                return item.id !== id
+            })
+        }
+    }
 })

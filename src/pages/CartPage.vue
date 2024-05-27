@@ -40,8 +40,8 @@ watchEffect(() => {
         >
             <BaseCheckbox
                 class="check-all"
-                @onClick="checkboxHandler()"
                 :checked="cartStore.isAllChecked(personId)"
+                @on-click="checkboxHandler()"
             />
             <Typography @click="checkboxHandler()">Выбрать все</Typography>
         </div>
@@ -53,24 +53,24 @@ watchEffect(() => {
                 :id="product.id"
                 :name="productStore.getProductById(product.id)?.name"
                 :price="productStore.getProductById(product.id)?.price"
-                :imageName="productStore.getProductById(product.id).imageName"
+                :image-name="productStore.getProductById(product.id).imageName"
             />
         </div>
         <div
             v-if="cart.content.length == 0"
             class="text-center space-y-4"
         >
-            <Typography tagName="h2">в корзине ничего нет</Typography>
+            <Typography tag-name="h2">в корзине ничего нет</Typography>
             <RouterLink to="/">
                 <Typography
-                    tagName="h3"
+                    tag-name="h3"
                     class="underline text-blue-600"
                 >
                     добавьте товары в корзину
                 </Typography>
             </RouterLink>
         </div>
-        <div class="h-[200px]"></div>
+        <div class="h-[200px]" />
     </div>
 
     <footer>
@@ -86,11 +86,7 @@ watchEffect(() => {
                 class="cart-button"
                 :disabled="cartStore.getTotalQuantity(personId) ? false : true"
             >
-                {{
-                    cartStore.getTotalQuantity(personId)
-                        ? 'Оформить заказ'
-                        : 'Добавьте товары'
-                }}
+                {{ cartStore.getTotalQuantity(personId) ? 'Оформить заказ' : 'Добавьте товары' }}
             </BaseButton></RouterLink
         >
     </footer>

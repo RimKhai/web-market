@@ -4,23 +4,23 @@ import { computed } from 'vue'
 const props = defineProps({
     tagName: {
         type: String,
-        default: 'p',
+        default: 'p'
     },
     bold: {
         type: Boolean,
-        default: false,
+        default: false
     },
     size: {
         type: String,
-        default: '',
-    },
+        default: ''
+    }
 })
 
 const classes = computed(() => [
     'typography',
     `size_${props.size}`,
     props.bold ? 'bold' : '',
-    `tag_${props.tagName}`,
+    `tag_${props.tagName}`
 ])
 </script>
 
@@ -29,7 +29,7 @@ const classes = computed(() => [
         :is="tagName"
         :class="classes"
     >
-        <slot></slot>
+        <slot />
     </component>
 </template>
 

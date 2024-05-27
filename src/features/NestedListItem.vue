@@ -2,14 +2,26 @@
 import Dropdown from './Drowdown.vue'
 import Typography from '../shared/Typography.vue'
 import { RouterLink } from 'vue-router'
-import { ref } from 'vue'
 
-const props = defineProps(['item', 'index', 'parentItem'])
+defineProps({
+    item: {
+        type: Object,
+        default: () => {}
+    },
+    index: {
+        type: Number,
+        default: -1
+    },
+    parentItem: {
+        type: Object,
+        default: () => {}
+    }
+})
 </script>
 
 <script>
 export default {
-    name: 'NestedListItem',
+    name: 'NestedListItem'
 }
 </script>
 
@@ -22,7 +34,7 @@ export default {
                 class="nested-item__button"
             >
                 <Typography
-                    tagName="span"
+                    tag-name="span"
                     class="nested-item__button"
                 >
                     {{ item.title }}
@@ -30,7 +42,7 @@ export default {
             </RouterLink>
             <Typography
                 v-else
-                tagName="span"
+                tag-name="span"
                 class="nested-item__button"
             >
                 {{ item.title }}
@@ -40,10 +52,10 @@ export default {
             <div class="nested-item__panel">
                 <NestedListItem
                     v-for="(child, subIndex) in item.subcategories"
-                    v-bind:item="child"
-                    :index="subIndex"
                     :key="child.id"
-                    :parentItem="item"
+                    :item="child"
+                    :index="subIndex"
+                    :parent-item="item"
                 />
             </div>
         </template>

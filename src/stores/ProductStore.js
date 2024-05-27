@@ -26,8 +26,8 @@ export const useProductStore = defineStore('productStore', {
                     'Модель процессора': 'Spreadtrum SC9863A',
                     'Количество Ядер': '8',
                     'Тактовая частота': '2.0 GHz',
-                    'Емкость Аккумулятора': '5000 mA*h',
-                },
+                    'Емкость Аккумулятора': '5000 mA*h'
+                }
             },
             {
                 id: 2,
@@ -36,7 +36,7 @@ export const useProductStore = defineStore('productStore', {
                 quantity: 6,
                 price: 100000,
                 totalRating: 3,
-                imageName:'samsung_a52',
+                imageName: 'samsung_a52',
                 parameters: {
                     Бренд: 'Samsung',
                     Модель: 'A52',
@@ -52,8 +52,8 @@ export const useProductStore = defineStore('productStore', {
                     'Модель процессора': 'Spreadtrum SC9863A',
                     'Количество Ядер': '8',
                     'Тактовая частота': '2.0 GHz',
-                    'Емкость Аккумулятора': '5000 mA*h',
-                },
+                    'Емкость Аккумулятора': '5000 mA*h'
+                }
             },
             {
                 id: 3,
@@ -78,8 +78,8 @@ export const useProductStore = defineStore('productStore', {
                     'Модель процессора': 'Spreadtrum SC9863A',
                     'Количество Ядер': '8',
                     'Тактовая частота': '2.0 GHz',
-                    'Емкость Аккумулятора': '5000 mA*h',
-                },
+                    'Емкость Аккумулятора': '5000 mA*h'
+                }
             },
             {
                 id: 4,
@@ -100,8 +100,8 @@ export const useProductStore = defineStore('productStore', {
                     Чувствительность: '100 дБ',
                     Разъем: 'jack 3.5',
                     'Длина кабеля': '2 м',
-                    Вес: '490 г',
-                },
+                    Вес: '490 г'
+                }
             },
             {
                 id: 5,
@@ -110,7 +110,7 @@ export const useProductStore = defineStore('productStore', {
                 quantity: 3.6,
                 price: 16000,
                 totalRating: 3,
-                imageName:'marshall',
+                imageName: 'marshall',
                 parameters: {
                     Бренд: 'Senheizer',
                     Модель: 'Ears 1',
@@ -122,8 +122,8 @@ export const useProductStore = defineStore('productStore', {
                     Чувствительность: '100 дБ',
                     Разъем: 'jack 3.5',
                     'Длина кабеля': '2 м',
-                    Вес: '590 г',
-                },
+                    Вес: '590 г'
+                }
             },
             {
                 id: 6,
@@ -144,8 +144,8 @@ export const useProductStore = defineStore('productStore', {
                     Чувствительность: '100 дБ',
                     Разъем: 'jack 3.5',
                     'Длина кабеля': '2 м',
-                    Вес: '490 г',
-                },
+                    Вес: '490 г'
+                }
             },
             {
                 id: 7,
@@ -159,8 +159,8 @@ export const useProductStore = defineStore('productStore', {
                     Бренд: 'Chahol',
                     'Модель телефона': 'Apple',
                     Материал: 'Полипропилен',
-                    Цвет: 'Черный',
-                },
+                    Цвет: 'Черный'
+                }
             },
             {
                 id: 8,
@@ -174,8 +174,8 @@ export const useProductStore = defineStore('productStore', {
                     Бренд: 'Chahol',
                     'Модель телефона': 'Apple',
                     Материал: 'Полипропилен',
-                    Цвет: 'Белый',
-                },
+                    Цвет: 'Белый'
+                }
             },
             {
                 id: 9,
@@ -189,8 +189,8 @@ export const useProductStore = defineStore('productStore', {
                     Бренд: 'Chahol',
                     'Модель телефона': 'Apple',
                     Материал: 'Полипропилен',
-                    Цвет: 'Красный',
-                },
+                    Цвет: 'Красный'
+                }
             },
             {
                 id: 10,
@@ -206,8 +206,8 @@ export const useProductStore = defineStore('productStore', {
                     'Тип аккумулятора': 'Li-pol',
                     'Ёмкость аккумулятора': '20000 mA*h',
                     'Маскимальный выходной ток': '2.4 A',
-                    'Количество выходных разъемов': '2 шт',
-                },
+                    'Количество выходных разъемов': '2 шт'
+                }
             },
             {
                 id: 11,
@@ -223,8 +223,8 @@ export const useProductStore = defineStore('productStore', {
                     'Тип аккумулятора': 'Li-pol',
                     'Ёмкость аккумулятора': '22000 mA*h',
                     'Маскимальный выходной ток': '2.4 A',
-                    'Количество выходных разъемов': '2 шт',
-                },
+                    'Количество выходных разъемов': '2 шт'
+                }
             },
             {
                 id: 12,
@@ -240,8 +240,8 @@ export const useProductStore = defineStore('productStore', {
                     'Тип аккумулятора': 'Li-pol',
                     'Ёмкость аккумулятора': '15000 mA*h',
                     'Маскимальный выходной ток': '2.4 A',
-                    'Количество выходных разъемов': '2 шт',
-                },
+                    'Количество выходных разъемов': '2 шт'
+                }
             },
             {
                 id: 13,
@@ -258,8 +258,8 @@ export const useProductStore = defineStore('productStore', {
                     Стереосистема: 'есть',
                     Мощность: '240 Вт',
                     'Минимальная частота воспроизведения': '10 Гц',
-                    'Максимальная частота воспроизведения': '28000 Гц',
-                },
+                    'Максимальная частота воспроизведения': '28000 Гц'
+                }
             },
             {
                 id: 14,
@@ -276,8 +276,8 @@ export const useProductStore = defineStore('productStore', {
                     Стереосистема: 'есть',
                     Мощность: '240 Вт',
                     'Минимальная частота воспроизведения': '10 Гц',
-                    'Максимальная частота воспроизведения': '28000 Гц',
-                },
+                    'Максимальная частота воспроизведения': '28000 Гц'
+                }
             },
             {
                 id: 15,
@@ -294,38 +294,37 @@ export const useProductStore = defineStore('productStore', {
                     Стереосистема: 'есть',
                     Мощность: '240 Вт',
                     'Минимальная частота воспроизведения': '10 Гц',
-                    'Максимальная частота воспроизведения': '28000 Гц',
-                },
-            },
-        ],
+                    'Максимальная частота воспроизведения': '28000 Гц'
+                }
+            }
+        ]
     }),
 
     getters: {
         getProductById: (state) => {
-            return (product_id) =>
-                state.products.find((item) => item.id == product_id) ?? -1
-        },
+            return (product_id) => state.products.find((item) => item.id == product_id) ?? -1
+        }
     },
 
     actions: {
         sortBy(sortType) {
             switch (sortType) {
                 case 'byId':
-                    this.products.sort((a, b) => a.id - b.id);
-                    break;
+                    this.products.sort((a, b) => a.id - b.id)
+                    break
                 case 'alphabetical':
-                    this.products.sort((a, b) => a.name.localeCompare(b.name));
-                    break;
+                    this.products.sort((a, b) => a.name.localeCompare(b.name))
+                    break
                 case 'priceLow':
-                    this.products.sort((a, b) => a.price - b.price);
-                    break;
+                    this.products.sort((a, b) => a.price - b.price)
+                    break
                 case 'priceHigh':
-                    this.products.sort((a, b) => b.price - a.price);
-                    break;
+                    this.products.sort((a, b) => b.price - a.price)
+                    break
                 case 'rating':
-                    this.products.sort((a, b) => a.totalRating - b.totalRating);
-                    break;
+                    this.products.sort((a, b) => a.totalRating - b.totalRating)
+                    break
             }
-        },
-    },
+        }
+    }
 })

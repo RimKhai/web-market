@@ -14,9 +14,7 @@ const cartStore = useCartStore()
 
 const personId = computed(() => personStore.loginedPersonId)
 const loginedPerson = computed(() => personStore.getCurrentPerson)
-const countOfProducts = computed(
-    () => cartStore.getCartByPersonId(personId.value)?.content?.length,
-)
+const countOfProducts = computed(() => cartStore.getCartByPersonId(personId.value)?.content?.length)
 </script>
 
 <template>
@@ -31,14 +29,14 @@ const countOfProducts = computed(
                             label: 'Корзина',
                             icon: 'cart',
                             count: countOfProducts,
-                            link: `/cart/${personId}`,
-                        },
+                            link: `/cart/${personId}`
+                        }
                     ]"
                 />
                 <PersonMenu
                     v-if="personId !== -1"
                     :name="loginedPerson?.name"
-                    :secondName="loginedPerson?.secondName"
+                    :second-name="loginedPerson?.secondName"
                 />
                 <RouterLink
                     v-else

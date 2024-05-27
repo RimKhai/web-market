@@ -28,46 +28,40 @@ const productId = computed(() => route.params.id)
 const product = computed(() => productStore.getProductById(productId.value))
 const isEditing = ref(false)
 const commentData = computed(() =>
-    commentStore.getCommentByPersonId(productId.value, personId.value),
+    commentStore.getCommentByPersonId(productId.value, personId.value)
 )
-const productComment = computed(() =>
-    commentStore.getCommentByProductId(productId.value),
-)
+const productComment = computed(() => commentStore.getCommentByProductId(productId.value))
 const commentFormVisibility = computed(
     () =>
-        (!productComment.value.personIds?.has(personId.value) ||
-            isEditing.value) &&
-        personId.value !== -1,
+        (!productComment.value.personIds?.has(personId.value) || isEditing.value) &&
+        personId.value !== -1
 )
 const commentVisibility = computed(
     () =>
-        (!productComment.value.personIds?.has(personId.value) ||
-            !isEditing.value) &&
-        personId.value !== -1,
+        (!productComment.value.personIds?.has(personId.value) || !isEditing.value) &&
+        personId.value !== -1
 )
 
-const onAddToCart = productId => {
+const onAddToCart = (productId) => {
     if (!cartStore.isInCart(personId.value, productId)) {
         cartStore.addToCart(personId.value, productId)
     }
 }
 
-import(
-    `../assets/${productStore.getProductById(productId.value).imageName}.png`
-).then(imageImports => {
-    imgSrc.value = imageImports.default
-})
+import(`../assets/${productStore.getProductById(productId.value).imageName}.png`).then(
+    (imageImports) => {
+        imgSrc.value = imageImports.default
+    }
+)
 </script>
 
 <template>
     <main class="product">
-        <Typography tagName="h3">{{ product?.name }}</Typography>
+        <Typography tag-name="h3">{{ product?.name }}</Typography>
         <div class="flex space-x-4">
-            <Typography tagName="h4"
-                >Рейтинг: {{ product?.totalRating?.toFixed(1) }}</Typography
-            >
+            <Typography tag-name="h4">Рейтинг: {{ product?.totalRating?.toFixed(1) }}</Typography>
             <Rating
-                :totalRating="5"
+                :total-rating="5"
                 :value="product?.totalRating"
             />
         </div>
@@ -78,11 +72,11 @@ import(
                     :src="imgSrc"
                     alt="failed"
                 />
-                <Typography tagName="h4">{{ product?.price }} руб</Typography>
+                <Typography tag-name="h4">{{ product?.price }} руб</Typography>
                 <div v-if="personId !== -1">
                     <BaseButton
-                        size="l"
                         v-if="!cartStore.isInCart(personId, productId)"
+                        size="l"
                         @click="onAddToCart(productId)"
                         >В корзину</BaseButton
                     >
@@ -103,17 +97,15 @@ import(
                     <TabPanel :class="['rounded-xl tab_panel p-8 space-y-4']">
                         <CommentForm
                             v-if="commentFormVisibility"
-                            @onSubmit="isEditing = false"
-                            :productId="productId"
+                            :product-id="productId"
+                            @on-submit="isEditing = false"
                         />
                         <Comment
                             v-else-if="commentVisibility"
-                            @onEdit="() => (isEditing = true)"
                             :data="commentData"
+                            @on-edit="() => (isEditing = true)"
                         />
-                        <div v-else>
-                            Авторизуйтесь, чтобы оставлять комментарии
-                        </div>
+                        <div v-else>Авторизуйтесь, чтобы оставлять комментарии</div>
                         <div
                             v-for="comment in productComment.content"
                             :key="comment.id"

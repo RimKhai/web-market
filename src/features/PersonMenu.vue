@@ -2,15 +2,15 @@
 import Typography from '../shared/Typography.vue'
 import BaseIcon from '../shared/BaseIcon.vue'
 
-const props = defineProps({
+defineProps({
     name: {
         type: String,
-        required: true,
+        required: true
     },
     secondName: {
         type: String,
-        required: true,
-    },
+        required: true
+    }
 })
 </script>
 
@@ -20,7 +20,7 @@ const props = defineProps({
         to="/profile"
     >
         <BaseIcon type="profile" />
-        <Typography tagName="p">
+        <Typography tag-name="p">
             {{ `${name} ${secondName}` }}
         </Typography>
     </RouterLink>

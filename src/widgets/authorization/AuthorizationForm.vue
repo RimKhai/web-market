@@ -16,11 +16,7 @@ const authSuccess = ref(true)
 const login = (email, password) => {
     console.log($personStore.login(email, password))
     if ($personStore.login(email, password)) {
-        router.push(
-            '/welcome/' +
-                $personStore.person[$personStore.getPersonIndexByEmail(email)]
-                    .id,
-        )
+        router.push('/welcome/' + $personStore.person[$personStore.getPersonIndexByEmail(email)].id)
     } else {
         authSuccess.value = false
     }
@@ -29,18 +25,18 @@ const login = (email, password) => {
 
 <template>
     <form
-        @submit.prevent="console.log('auth')"
         class="authorization__form"
+        @submit.prevent="console.log('auth')"
     >
         <input
-            class="base-input"
             v-model="email"
+            class="base-input"
             placeholder="E-mail"
             type="email"
         />
         <input
-            class="base-input"
             v-model="password"
+            class="base-input"
             placeholder="Пароль"
             type="password"
         />

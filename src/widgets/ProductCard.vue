@@ -11,28 +11,28 @@ import Typography from '../shared/Typography.vue'
 
 const $props = defineProps({
     id: {
-        type: Number,
+        type: Number
     },
     name: {
         type: String,
-        default: 'Unnamed',
+        default: 'Unnamed'
     },
     description: {
         type: String,
-        default: 'No Description',
+        default: 'No Description'
     },
     quantity: {
         type: Number,
-        default: 0,
+        default: 0
     },
     price: {
         type: Number,
-        default: 109999,
+        default: 109999
     },
     imageName: {
         type: String,
-        default: '',
-    },
+        default: ''
+    }
 })
 
 const cartStore = useCartStore()
@@ -42,18 +42,16 @@ const $route = useRoute()
 
 const imgSource = ref('')
 const personId = computed(() => personStore.loginedpersonId)
-const productLink = computed(
-    () => `/${$route.params.category}/product/${$props.id}`,
-)
+const productLink = computed(() => `/${$route.params.category}/product/${$props.id}`)
 const product = computed(() => productStore.getProductById($props.id))
 
-const onClick = id => {
+const onClick = (id) => {
     if (!cartStore.isInCart(personId.value, id)) {
         cartStore.addToCart(personId.value, id)
     }
 }
 
-import(`../assets/${$props.imageName}.png`).then(imageImports => {
+import(`../assets/${$props.imageName}.png`).then((imageImports) => {
     imgSource.value = imageImports.default
 })
 </script>
@@ -71,33 +69,31 @@ import(`../assets/${$props.imageName}.png`).then(imageImports => {
             <div class="product-card__description">
                 <div class="flex items-center gap-2">
                     <RouterLink :to="productLink">
-                        <Typography tagName="p">{{ name }}</Typography>
+                        <Typography tag-name="p">{{ name }}</Typography>
                     </RouterLink>
-                    <Typography tagName="p">
+                    <Typography tag-name="p">
                         {{ product.totalRating.toFixed(1) }}
                         <span class="star">★</span>
                     </Typography>
                 </div>
                 <Typography>{{ description }}</Typography>
             </div>
-            <Typography class="product-card__quantity">{{
-                quantity
-            }}</Typography>
+            <Typography class="product-card__quantity">{{ quantity }}</Typography>
             <div class="product-card__actions">
                 <Typography>{{ price }} Руб.</Typography>
                 <div v-if="personId !== -1">
                     <BaseButton
+                        v-if="!cartStore.isInCart(personId, id)"
                         size="m"
                         color="primary"
-                        v-if="!cartStore.isInCart(personId, id)"
                         @click="onClick(id)"
                     >
                         В корзину
                     </BaseButton>
                     <BaseButton
+                        v-else
                         size="m"
                         color="disabled"
-                        v-else
                         @click="cartStore.removeFromCart(personId, id)"
                     >
                         Убрать

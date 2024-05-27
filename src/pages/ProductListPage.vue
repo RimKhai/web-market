@@ -23,8 +23,7 @@ const ITEMS_PER_PAGE = 3
 const countOfItems = computed(() =>
     route.params.category.at(-1) == 'all'
         ? productStore.products.length
-        : categoryStore.getAllByPath(route.params.category.at(-1))[0].products
-              .length,
+        : categoryStore.getAllByPath(route.params.category.at(-1))[0].products.length
 )
 
 const displayedItems = computed(() => {
@@ -43,11 +42,11 @@ const displayedItems = computed(() => {
         .slice(startIndex, endIndex)
 })
 
-const changePage = pageNumber => {
+const changePage = (pageNumber) => {
     currentPage.value = pageNumber
 }
 
-const cardVisibility = productId => {
+const cardVisibility = (productId) => {
     return (
         categoryStore
             .getCategoryByPath(route.params.category.at(-1))
@@ -58,24 +57,24 @@ const cardVisibility = productId => {
 const SORT_OPTIONS = [
     {
         title: 'Без Сортировки',
-        value: 'byId',
+        value: 'byId'
     },
     {
         title: 'По Алфавиту',
-        value: 'alphabetical',
+        value: 'alphabetical'
     },
     {
         title: 'По Цене(Сначала низкие)',
-        value: 'priceLow',
+        value: 'priceLow'
     },
     {
         title: 'По Цене(Сначала высокие)',
-        value: 'priceHigh',
+        value: 'priceHigh'
     },
     {
         title: 'По Рейтингу',
-        value: 'rating',
-    },
+        value: 'rating'
+    }
 ]
 </script>
 
@@ -85,7 +84,7 @@ const SORT_OPTIONS = [
             <Dropdown class="category-menu__list">
                 <template #button>
                     <Typography
-                        tagName="p"
+                        tag-name="p"
                         class="category-menu__button"
                         >Категория</Typography
                     >
@@ -93,12 +92,10 @@ const SORT_OPTIONS = [
                 <template #panel>
                     <div class="category-menu__content">
                         <NestedListItem
+                            v-for="(item, index) in categoryStore.categoriesTree"
+                            :key="item.id"
                             :item="item"
                             :index="index"
-                            v-for="(
-                                item, index
-                            ) in categoryStore.categoriesTree"
-                            :key="item.id"
                         />
                     </div>
                 </template>
@@ -108,16 +105,16 @@ const SORT_OPTIONS = [
             <LineNavigation />
             <div class="product-list__actions">
                 <BaseSelect
-                    @onClick="data => productStore.sortBy(data.value)"
                     :data="SORT_OPTIONS"
+                    @on-click="(data) => productStore.sortBy(data.value)"
                 />
             </div>
             <Pagination
                 class="space-y-2"
-                :itemsCount="countOfItems"
-                :itemsPerPage="ITEMS_PER_PAGE"
-                :currentPage="currentPage"
-                @changePage="changePage"
+                :items-count="countOfItems"
+                :items-per-page="ITEMS_PER_PAGE"
+                :current-page="currentPage"
+                @change-page="changePage"
             >
                 <div
                     v-for="product in displayedItems"
@@ -130,12 +127,12 @@ const SORT_OPTIONS = [
                         :description="product.description"
                         :quantity="product.quantity"
                         :price="product.price"
-                        :imageName="product.imageName"
+                        :image-name="product.imageName"
                     />
                 </div>
             </Pagination>
         </main>
-        <aside class="w-[25%]"></aside>
+        <aside class="w-[25%]" />
     </div>
 </template>
 

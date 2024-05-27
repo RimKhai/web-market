@@ -17,17 +17,9 @@ const categoryStore = useCategoryStore()
             :key="category"
         >
             <RouterLink
-                :to="
-                    '/' +
-                    $route.params.category.slice(0, index + 1).join('/') +
-                    '/products'
-                "
+                :to="'/' + $route.params.category.slice(0, index + 1).join('/') + '/products'"
             >
-                {{
-                    `/${categoryStore
-                        .getCategoryByPath(category)
-                        .title.toLowerCase()}`
-                }}
+                {{ `/${categoryStore.getCategoryByPath(category).title.toLowerCase()}` }}
             </RouterLink>
         </div>
     </div>

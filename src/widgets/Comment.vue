@@ -6,46 +6,49 @@ import Raiting from '../features/Rating.vue'
 import BaseIcon from '../shared/BaseIcon.vue'
 import Typography from '../shared/Typography.vue'
 import ImageCard from './ImageCard.vue'
+import { useRoute } from 'vue-router'
 
 const props = defineProps({
     data: {
+        type: Object,
         id: {
             type: Number,
-            required: true,
+            required: true
         },
         person: {
             type: Object,
-            required: true,
+            required: true
         },
         advantage: {
             type: Object,
-            required: true,
+            required: true
         },
         disadvantage: {
             type: Object,
-            required: true,
+            required: true
         },
         comment: {
             type: Object,
-            required: true,
+            required: true
         },
         rating: {
             type: Number,
-            required: true,
+            required: true
         },
 
         date: {
             type: String,
-            required: true,
+            required: true
         },
         images: {
             type: Array,
-            required: false,
-        },
-    },
+            required: false
+        }
+    }
 })
 
 const emits = defineEmits(['onDelete', 'onEdit'])
+const $route = useRoute()
 
 const personStore = usePersonStore()
 const commentStore = useCommentStore()
@@ -55,6 +58,7 @@ const rating = ref(props.data?.rating)
 const totalRating = 5
 
 const onDelete = () => {
+    commentStore.removeComment($route.params.id, props.data?.id)
     emits('onDelete', props.data?.id)
 }
 const onEdit = () => {
@@ -66,15 +70,13 @@ const onEdit = () => {
     <div class="comment">
         <div class="space-y-3">
             <div class="comment__head">
-                <div class="w-12 h-12 bg-black rounded-full"></div>
+                <div class="w-12 h-12 bg-black rounded-full" />
                 <div>
                     <Typography>{{ props.data?.person?.name }}</Typography>
                     <div class="text-gray-400">
                         {{
-                            `${new Date(
-                                props.data?.date,
-                            ).toLocaleDateString()} ${new Date(
-                                props.data?.date,
+                            `${new Date(props.data?.date).toLocaleDateString()} ${new Date(
+                                props.data?.date
                             ).toLocaleTimeString('ru')}`
                         }}
                     </div>
@@ -102,15 +104,13 @@ const onEdit = () => {
             class="flex gap-2"
         >
             <BaseIcon
-                @click="onEdit"
                 fill="none"
                 type="edit"
+                @click="onEdit"
             />
             <BaseIcon
-                @click="
-                    commentStore.removeComment($route.params.id, props.data?.id)
-                "
                 type="x-mark"
+                @click="onDelete"
             />
         </div>
     </div>

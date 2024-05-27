@@ -9,12 +9,8 @@ setTimeout(() => router.push('/'), 3000)
 </script>
 
 <template>
-    <Typography tagName="h1"
-        >Добро пожаловать, {{ personStore.getCurrentPerson.name }}</Typography
-    >
-    <Typography
-        >Перенаправление на страницу категорий через 3 секунд...</Typography
-    >
+    <Typography tag-name="h1">Добро пожаловать, {{ personStore.getCurrentPerson.name }}</Typography>
+    <Typography>Перенаправление на страницу категорий через 3 секунд...</Typography>
 </template>
 
 <style lang="scss" scoped></style>
