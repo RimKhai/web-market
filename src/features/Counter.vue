@@ -3,9 +3,13 @@ import { ref } from 'vue'
 
 import BaseIcon from '../shared/BaseIcon.vue'
 
-const count = ref(1)
 
+const props = defineProps({
+    value: Number
+})
 const emits = defineEmits(['onMinus', 'onPlus', 'onChange'])
+
+const count = ref(props.value)
 
 const onMinus = () => {
     count.value--

@@ -38,6 +38,10 @@ const removeCartItemOnZero = (id) => {
     }
 }
 
+const getCartItemQuantity = (id) => {
+    return cartStore.getCartItemById(personId.value, id).quantity
+}
+
 import(`../assets/${props.imageName}.png`).then((imageImports) => {
     imgSrc.value = imageImports.default
 })
@@ -61,6 +65,7 @@ import(`../assets/${props.imageName}.png`).then((imageImports) => {
         </RouterLink>
         <div class="cart-product-card__actions">
             <Counter
+                :value="getCartItemQuantity(props.id)"
                 @on-minus="decreaseQuantity(props.id)"
                 @on-plus="increaseQuantity(props.id)"
                 @on-change="(event) => changeQuantity(event, props.id)"

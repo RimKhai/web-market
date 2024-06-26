@@ -41,7 +41,7 @@ const personStore = usePersonStore()
 const $route = useRoute()
 
 const imgSource = ref('')
-const personId = computed(() => personStore.loginedpersonId)
+const personId = computed(() => personStore.loginedPersonId)
 const productLink = computed(() => `/${$route.params.category}/product/${$props.id}`)
 const product = computed(() => productStore.getProductById($props.id))
 

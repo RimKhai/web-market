@@ -23,14 +23,12 @@ export const useCartStore = defineStore('cartStore', {
     }),
 
     getters: {
-        //В случае отсутствия совпадений каждая из функций возращает -1, аналогично встроенному методу indexOf()
-
-        getCartItemByPersonId: (state) => {
-            return (personId) => state.cart.find((item) => item.personId == personId) ?? -1
+        getCartItemByPersonId() {
+            return (personId) => this.cart.find((item) => item.personId === personId)
         },
         getCartItemById() {
             return (personId, id) =>
-                this.getCartItemByPersonId(personId).content?.find((item) => item.id == id) ?? -1
+                this.getCartItemByPersonId(personId)?.content?.find((item) => item.id == id)
         },
 
         getTotalCost() {
@@ -55,12 +53,20 @@ export const useCartStore = defineStore('cartStore', {
         },
         getCartByPersonId() {
             return (personId) => this.cart.find((item) => item.personId == personId) ?? -1
-        }
+        },
     },
 
     actions: {
         addToCart(personId, id) {
-            this.getCartByPersonId(personId).content.push({
+            const existItemIndex = this.getCartItemByPersonId(personId).content.findIndex(
+                (item) => item.id == id
+            )
+            if (existItemIndex !== -1) {
+                console.log(this.getCartByPersonId(personId).content)
+                this.getCartByPersonId(personId).content[existItemIndex].quantity += 1
+                return 
+            }
+            this.getCartItemByPersonId(personId).content.push({
                 id: id,
                 quantity: 1,
                 checked: true
@@ -88,7 +94,7 @@ export const useCartStore = defineStore('cartStore', {
         },
 
         isInCart(personId, id) {
-            this.getCartItemById(personId, id) !== -1 ? true : false
+            this.getCartItemById(personId, id) !== undefined ? true : false
         },
 
         isChecked(personId, id) {

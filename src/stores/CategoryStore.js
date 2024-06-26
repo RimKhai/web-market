@@ -118,8 +118,6 @@ export const useCategoryStore = defineStore('categoryStore', {
     }),
 
     getters: {
-        // в случае отсутствия совпаденйи функции возвращают -1
-
         getCategoryById: (state) => {
             return (category_id) => state.categories.find((item) => item.id == category_id)
         },
