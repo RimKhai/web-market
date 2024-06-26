@@ -62,7 +62,6 @@ export const useCartStore = defineStore('cartStore', {
                 (item) => item.id == id
             )
             if (existItemIndex !== -1) {
-                console.log(this.getCartByPersonId(personId).content)
                 this.getCartByPersonId(personId).content[existItemIndex].quantity += 1
                 return 
             }
@@ -94,7 +93,7 @@ export const useCartStore = defineStore('cartStore', {
         },
 
         isInCart(personId, id) {
-            this.getCartItemById(personId, id) !== undefined ? true : false
+            return this.getCartItemById(personId, id) !== undefined ? true : false
         },
 
         isChecked(personId, id) {

@@ -81,14 +81,12 @@ watchEffect(() => {
         <p>
             {{ `Количество товаров: ${cartStore.getTotalQuantity(personId)}` }}
         </p>
-        <RouterLink to="/order-reg">
-            <BaseButton
-                class="cart-button"
-                :disabled="cartStore.getTotalQuantity(personId) ? false : true"
-            >
-                {{ cartStore.getTotalQuantity(personId) ? 'Оформить заказ' : 'Добавьте товары' }}
-            </BaseButton></RouterLink
+        <BaseButton
+            class="cart-button"
+            :disabled="cartStore.getTotalQuantity(personId) ? false : true"
         >
+            {{ cartStore.getTotalQuantity(personId) ? 'Оформить заказ' : 'Добавьте товары' }}
+        </BaseButton>
     </footer>
 </template>
 

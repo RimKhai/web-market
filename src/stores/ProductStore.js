@@ -291,8 +291,8 @@ export const useProductStore = defineStore('productStore', {
                     'Бренд': 'JBL',
                     'Модель': 'Clear Sound',
                     'Основной цвет': 'Белый',
-                    Стереосистема: 'есть',
-                    Мощность: '240 Вт',
+                    'Стереосистема': 'есть',
+                    'Мощность': '240 Вт',
                     'Минимальная частота воспроизведения': '10 Гц',
                     'Максимальная частота воспроизведения': '28000 Гц'
                 }
@@ -302,7 +302,7 @@ export const useProductStore = defineStore('productStore', {
 
     getters: {
         getProductById: (state) => {
-            return (product_id) => state.products.find((item) => item.id == product_id) ?? -1
+            return (product_id) => state.products.find((item) => item.id == product_id)
         }
     },
 
