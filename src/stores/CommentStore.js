@@ -177,17 +177,17 @@ export const useCommentStore = defineStore('commentStore', {
 
     getters: {
         getCommentByProductId: (state) => {
-            return (productId) => state.comments.find((item) => item.productId == productId) ?? -1
+            return (productId) => state.comments.find((item) => item.productId == productId)
         },
         getCommentById() {
             return (productId, id) =>
-                this.getCommentByProductId(productId).content?.find((item) => item.id == id) ?? -1
+                this.getCommentByProductId(productId)?.content?.find((item) => item.id == id)
         },
         getCommentByPersonId() {
             return (productId, personId) =>
-                this.getCommentByProductId(productId).content?.find(
+                this.getCommentByProductId(productId)?.content?.find(
                     (item) => item.person.id == personId
-                ) ?? -1
+                )
         }
     },
 
