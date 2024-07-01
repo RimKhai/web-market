@@ -23,7 +23,7 @@ export const usePersonStore = defineStore('personStore', {
     getters: {
         // Получение пользователя по ID
         getPersonById: (state) => (personId) =>
-            state.person.find((item) => item.id === personId) ?? -1,
+            state.person.find((item) => item.id === personId),
 
         // Получение индекса пользователя по email
         getPersonIndexByEmail: (state) => (email) =>

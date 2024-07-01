@@ -18,7 +18,7 @@ const personStore = usePersonStore()
 const TOTAL_RATING = 5
 
 const commentPerson = onMounted(() => {
-    return commentStore.getCommentByPersonId(props.productId, 1)
+    return commentStore.getCommentByPersonId(props.productId, personStore.loginedPersonId)
 })
 
 const loginedPerson = computed(() => personStore.getCurrentPerson)

@@ -210,7 +210,6 @@ export const useCommentStore = defineStore('commentStore', {
         },
 
         addComment(productId, person, advantage, disadvantage, comment, rating, images) {
-            console.log(advantage, disadvantage, comment)
             if (advantage.trim() === '' && disadvantage.trim() === '' && comment.trim() === '') {
                 return false
             }
