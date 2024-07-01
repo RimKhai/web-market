@@ -8,7 +8,7 @@ import { RouterLink } from 'vue-router'
 import Typography from '../shared/Typography.vue'
 
 onMounted(() => {
-    if (usePersonStore().logined_person_index !== -1) {
+    if (usePersonStore().loginedPersonIndex !== -1) {
         router.push('/')
     }
 })

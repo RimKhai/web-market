@@ -6,7 +6,7 @@ import Typography from '../shared/Typography.vue'
 
 defineProps({
     text: {
-        type: String
+        required: false
     }
 })
 defineEmits(['onChange'])

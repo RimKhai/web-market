@@ -5,7 +5,7 @@ import { router } from '../router'
 
 const personStore = usePersonStore()
 
-setTimeout(() => router.push('/'), 3000)
+setTimeout(() => router.push('/all/products'), 3000)
 </script>
 
 <template>

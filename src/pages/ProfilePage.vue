@@ -38,6 +38,8 @@ const clickHandler = () => {
     router.push('/authorization/auth')
     personStore.quit()
 }
+
+
 </script>
 
 <template>
@@ -46,7 +48,7 @@ const clickHandler = () => {
             <div class="h-48 w-32 bg-black rounded-2xl" />
             <BaseButton
                 class="profile-page__logout-button"
-                @click="clickHandler"
+                @click="() => clickHandler()"
             >
                 Выйти
             </BaseButton>
