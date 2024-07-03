@@ -32,6 +32,7 @@ const routes = [
         name: 'MainOutlet',
         path: '/',
         component: TheMain,
+        redirect: '/all/products',
         children: [
             {
                 name: 'WelcomePage',
