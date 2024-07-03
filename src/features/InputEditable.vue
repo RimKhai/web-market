@@ -8,8 +8,6 @@ import Typography from '../shared/Typography.vue'
 const props = defineProps(['modelValue'])
 const emit = defineEmits(['update:modelValue', 'blur'])
 
-const inputRef = ref(null)
-
 const isEditable = ref(false)
 
 const blur = () => {
@@ -17,15 +15,11 @@ const blur = () => {
     emit('blur', isEditable)
 }
 
-const setRef = (element) => {
-    inputRef.value = element
-}
 </script>
 
 <template>
     <div
-    v-click-outside="blur"
-        :ref="(el) => setRef(el)"
+        v-click-outside="blur"
         v-if="isEditable"
     >
         <input
