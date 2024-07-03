@@ -1,5 +1,6 @@
 <script setup>
 import { ref, defineEmits } from 'vue'
+import { vClickOutside } from '../lib/vClickOutside'
 
 import BaseIcon from '../shared/BaseIcon.vue'
 import Typography from '../shared/Typography.vue'
@@ -7,19 +8,28 @@ import Typography from '../shared/Typography.vue'
 const props = defineProps(['modelValue'])
 const emit = defineEmits(['update:modelValue', 'blur'])
 
+const inputRef = ref(null)
+
 const isEditable = ref(false)
 
 const blur = () => {
-    isEditable = false
+    isEditable.value = false
     emit('blur', isEditable)
 }
 
-console.log(props.modelValue)
+const setRef = (element) => {
+    inputRef.value = element
+}
 </script>
 
 <template>
-    <div v-if="isEditable">
+    <div
+    v-click-outside="blur"
+        :ref="(el) => setRef(el)"
+        v-if="isEditable"
+    >
         <input
+            
             :value="modelValue"
             @blur="blur()"
             @keyup.enter="isEditable = false"
