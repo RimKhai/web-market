@@ -29,7 +29,6 @@ const setRef = (element) => {
         v-if="isEditable"
     >
         <input
-            
             :value="modelValue"
             @blur="blur()"
             @keyup.enter="isEditable = false"
