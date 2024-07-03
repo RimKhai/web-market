@@ -4,23 +4,26 @@ import { ref, defineEmits } from 'vue'
 import BaseIcon from '../shared/BaseIcon.vue'
 import Typography from '../shared/Typography.vue'
 
-defineProps({
-    text: {
-        required: false
-    }
-})
-defineEmits(['onChange'])
+const props = defineProps(['modelValue'])
+const emit = defineEmits(['update:modelValue', 'blur'])
 
 const isEditable = ref(false)
+
+const blur = () => {
+    isEditable = false
+    emit('blur', isEditable)
+}
+
+console.log(props.modelValue)
 </script>
 
 <template>
     <div v-if="isEditable">
         <input
-            :value="text"
-            @blur="isEditable = false"
+            :value="modelValue"
+            @blur="blur()"
             @keyup.enter="isEditable = false"
-            @change="onChange"
+            @input="emit('update:modelValue', $event.target.value)"
         />
     </div>
     <div
@@ -28,7 +31,7 @@ const isEditable = ref(false)
         class="flex space-x-2"
         @click="isEditable = true"
     >
-        <Typography>{{ text }}</Typography>
+        <Typography>{{ modelValue }}</Typography>
         <BaseIcon
             fill="none"
             type="edit"

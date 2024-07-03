@@ -17,28 +17,17 @@ const secondName = ref(loginedPerson.value.secondName)
 const email = ref(loginedPerson.value.email)
 const password = ref(loginedPerson.value.password)
 
-const changeName = (event) => {
-    name.value = event.target.value
-    personStore.changeName(loginedPerson.value.id, event.target.value)
-}
-const changeSecondName = (event) => {
-    secondName.value = event.target.value
-    personStore.changeSecondName(loginedPerson.value.id, event.target.value)
-}
-const changeEmail = (event) => {
-    email.value = event.target.value
-    personStore.changeEmail(loginedPerson.value.id, event.target.value)
-}
-const changePassword = (event) => {
-    password.value = event.target.value
-    personStore.changePassword(loginedPerson.value.id, event.target.value)
-}
-
 const clickHandler = () => {
     router.push('/authorization/auth')
     personStore.quit()
 }
 
+const onBlur = (e) => {
+    personStore.changeName(loginedPerson.value.id, event.target.value)
+    personStore.changeSecondName(loginedPerson.value.id, event.target.value)
+    personStore.changeEmail(loginedPerson.value.id, event.target.value)
+    personStore.changePassword(loginedPerson.value.id, event.target.value)
+}
 
 </script>
 
@@ -59,32 +48,28 @@ const clickHandler = () => {
             <div class="profile-page__form">
                 <Typography class="input-label">Имя:</Typography>
                 <InputEditable
-                    :text="name"
-                    :on-change="(event) => changeName(event)"
+                    v-model="name"
                 />
             </div>
 
             <div class="profile-page__form">
                 <Typography class="input-label">Фамилия:</Typography>
                 <InputEditable
-                    :text="secondName"
-                    :on-change="(event) => changeSecondName(event)"
+                    v-model="secondName"
                 />
             </div>
 
             <div class="profile-page__form">
                 <Typography class="input-label">E-mail:</Typography>
                 <InputEditable
-                    :text="email"
-                    :on-change="(event) => changeEmail(event)"
+                    v-model="email"
                 />
             </div>
 
             <div class="profile-page__form">
                 <Typography class="input-label">Пароль:</Typography>
                 <InputEditable
-                    :text="password"
-                    :on-change="(event) => changePassword(event)"
+                    v-model="password"
                 />
             </div>
         </section>
