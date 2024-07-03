@@ -1,6 +1,5 @@
 <script setup>
 import { ref, defineEmits } from 'vue'
-import { vClickOutside } from '../lib/vClickOutside'
 
 import BaseIcon from '../shared/BaseIcon.vue'
 import Typography from '../shared/Typography.vue'
@@ -19,7 +18,6 @@ const blur = () => {
 
 <template>
     <div
-        v-click-outside="blur"
         v-if="isEditable"
     >
         <input
